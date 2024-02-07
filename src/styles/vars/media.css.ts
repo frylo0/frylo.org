@@ -1,7 +1,13 @@
+import { breakpoints } from '@/constants/breakpoints';
+
+function and(...mediaStrings: string[]): string {
+	return mediaStrings.join(' and ');
+}
+
 const device = {
-	desktop: '(min-width: 1280px)',
-	tablet: '(min-width: 768px) and (max-width: 1280px)',
-	phone: '(max-width: 768px)',
+	desktop: `(min-width: ${breakpoints.desktop.minWidth}px)`,
+	tablet: and(`(min-width: ${breakpoints.tablet.minWidth}px)`, `(max-width: ${breakpoints.tablet.maxWidth}px)`),
+	phone: `(max-width: ${breakpoints.phone.maxWidth}px)`,
 };
 
 const colorMode = {
@@ -9,12 +15,8 @@ const colorMode = {
 	light: '(prefers-color-scheme: light)',
 };
 
-function combine(...mediaStrings: string[]): string {
-	return mediaStrings.join(' and ');
-}
-
 export const media = {
 	device,
 	colorMode,
-	combine,
+	and,
 };
