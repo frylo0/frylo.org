@@ -1,12 +1,14 @@
 import { globalStyle } from '@vanilla-extract/css';
 
-import { fonts } from './bundle.css';
-import { colors } from './vars/colors.css';
+import { colors, fontStyles, media } from './bundle.css';
 
 globalStyle('html', {
-	fontSize: '12px',
 	background: colors.body,
 	color: colors.secondary,
-	fontFamily: fonts.gothamPro,
-	fontWeight: 'normal',
+
+	'@media': {
+		[media.device.desktop]: fontStyles.body,
+		[media.device.tablet]: fontStyles.body,
+		[media.device.phone]: fontStyles.bodyMobile,
+	},
 });
