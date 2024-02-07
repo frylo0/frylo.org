@@ -8,6 +8,9 @@ dependencies:
   '@vanilla-extract/css':
     specifier: 1.14.0
     version: 1.14.0
+  '@vanilla-extract/dynamic':
+    specifier: 2.1.0
+    version: 2.1.0
   clsx:
     specifier: 2.0.0
     version: 2.0.0
@@ -23,6 +26,9 @@ dependencies:
   react-dom:
     specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
+  usehooks-ts:
+    specifier: 2.13.0
+    version: 2.13.0(react@18.2.0)
   zustand:
     specifier: 4.4.7
     version: 4.4.7(@types/react@18.2.45)(react@18.2.0)
@@ -5009,6 +5015,12 @@ packages:
       modern-ahocorasick: 1.0.1
       outdent: 0.8.0
 
+  /@vanilla-extract/dynamic@2.1.0:
+    resolution: {integrity: sha512-8zl0IgBYRtgD1h+56Zu13wHTiMTJSVEa4F7RWX9vTB/5Xe2KtjoiqApy/szHPVFA56c+ex6A4GpCQjT1bKXbYw==}
+    dependencies:
+      '@vanilla-extract/private': 1.0.3
+    dev: false
+
   /@vanilla-extract/integration@6.2.4(@types/node@20.10.4):
     resolution: {integrity: sha512-+AfymNMVq9sEUe0OJpdCokmPZg4Zi6CqKaW/PnUOfDwEn53ighHOMOBl5hAgxYR8Kiz9NG43Bn00mkjWlFi+ng==}
     dependencies:
@@ -9427,7 +9439,6 @@ packages:
 
   /lodash.debounce@4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
-    dev: true
 
   /lodash.isfunction@3.0.9:
     resolution: {integrity: sha512-AirXNj15uRIMMPihnkInB4i3NHeb4iBtNg9WRWuK2o31S+ePwwNmDPaTL3o7dTJ+VXNZim7rFs4rxN4YU1oUJw==}
@@ -12615,6 +12626,16 @@ packages:
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
+      react: 18.2.0
+    dev: false
+
+  /usehooks-ts@2.13.0(react@18.2.0):
+    resolution: {integrity: sha512-3yZ2dwbc5BTaejBvamckAqv/q29sKFeqNCdi1z9Im4GzsTT5XbdIdbB94KEoh9xSvZy/qRoztjR14pF5voEU5Q==}
+    engines: {node: '>=16.15.0'}
+    peerDependencies:
+      react: ^16.8.0  || ^17 || ^18
+    dependencies:
+      lodash.debounce: 4.0.8
       react: 18.2.0
     dev: false
 

@@ -17,6 +17,7 @@ export const Layout: React.FC<LayoutProps> = ({ className = '', children }) => {
 
 export type TDevice = {
 	name: TDevices;
+	innerWidth: number;
 } & TBreakpoint;
 
 export function useLayout(): TDevice | null {
@@ -28,7 +29,7 @@ export function useLayout(): TDevice | null {
 
 		for (const [name, info] of points) {
 			if (width >= info.maxWidth || width <= info.minWidth) continue;
-			setDevice({ name: name as TDevices, ...info });
+			setDevice({ name: name as TDevices, innerWidth: width, ...info });
 			break;
 		}
 	}, []);
