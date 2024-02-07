@@ -1,9 +1,12 @@
 import { style } from '@vanilla-extract/css';
 
-import { fonts } from './../src/styles/bundle.css';
+import { colors, fontStyles } from './../src/styles/bundle.css';
 
 const storybookDecorator = style({
-	fontFamily: fonts.gothamPro,
+	background: colors.body,
+	color: colors.secondary,
+
+	...fontStyles.body,
 });
 
 export const s = {
