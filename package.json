@@ -6,7 +6,7 @@
 	"author": "frylo",
 	"license": "MIT",
 	"keywords": [
-		"portfolio",
+		"portfolio"
 	],
 	"scripts": {
 		"dev": "next",

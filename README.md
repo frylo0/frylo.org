@@ -2,6 +2,8 @@
 
 This project is maintained by the @frylo.
 
+**Design**: [Link to figma file](https://www.figma.com/file/4PxEoUwT1SLLI0gCA2OLmf/Frylo.d.ts-Portfolio?type=design&node-id=7%3A110&mode=design&t=aF4FEKOlKYac9n43-1)
+
 ## Reference
 
 -   [Run Locally](#run-locally)
