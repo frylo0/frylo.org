@@ -1,4 +1,4 @@
-import { Header } from './Header';
+import { Footer } from './Footer';
 
 import type { Decorator, Meta, StoryObj } from '@storybook/react';
 
@@ -9,14 +9,14 @@ const WithPadding: Decorator = (Story) => (
 );
 
 const meta = {
-	title: 'Block/Header',
-	component: Header,
+	title: 'Block/Footer',
+	component: Footer,
 	parameters: {
 		layout: 'fullwidth',
 	},
 	tags: ['autodocs'],
 	argTypes: {},
-} satisfies Meta<typeof Header>;
+} satisfies Meta<typeof Footer>;
 
 export default meta;
 
