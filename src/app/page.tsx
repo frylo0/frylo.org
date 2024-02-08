@@ -1,8 +1,8 @@
 import cn from 'clsx';
 import { Metadata } from 'next';
 
-import { Header } from '@/components/block/Header/Header';
 import { Layout } from '@/components/common/Layout/Layout';
+import { Preview } from '@/components/section/Preview/Preview';
 import { sPage } from './page.css';
 
 export const metadata: Metadata = {
@@ -13,8 +13,9 @@ export const metadata: Metadata = {
 export default function Page() {
 	return (
 		<main className={cn(sPage)}>
-			<Header />
-			<Layout>Hello, World!</Layout>
+			<Layout>
+				<Preview />
+			</Layout>
 		</main>
 	);
 }

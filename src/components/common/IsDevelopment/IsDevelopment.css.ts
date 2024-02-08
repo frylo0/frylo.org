@@ -15,6 +15,9 @@ export const sIsDevelopment = style({
 	backgroundImage:
 		'linear-gradient(45deg, #fffbc470 25%, #ffffff30 25%, #ffffff30 50%, #fffbc470 50%, #fffbc470 75%, #ffffff30 75%, #ffffff30 100%)',
 	backgroundSize: '56.57px 56.57px',
+
+	textAlign: 'center',
+	padding: '1em',
 });
 
 export const sHidden = style({
