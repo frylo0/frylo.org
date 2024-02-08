@@ -19,25 +19,25 @@ export const fontStyles = {
 		fontFamily: fonts.jost,
 		fontSize: 16,
 		fontWeight: fontWeight.light,
-		lineHeight: 23,
+		lineHeight: '23px',
 	},
 	bodyMobile: {
 		fontFamily: fonts.jost,
 		fontSize: 14,
 		fontWeight: fontWeight.light,
-		lineHeight: 20,
+		lineHeight: '20px',
 	},
 
 	head: {
 		fontFamily: fonts.jost,
 		fontSize: 32,
 		fontWeight: fontWeight.bold,
-		lineHeight: 46,
+		lineHeight: '46px',
 	},
 	headMobile: {
 		fontFamily: fonts.jost,
 		fontSize: 24,
 		fontWeight: fontWeight.bold,
-		lineHeight: 35,
+		lineHeight: '35px',
 	},
 } satisfies Record<string, StyleRule>;
