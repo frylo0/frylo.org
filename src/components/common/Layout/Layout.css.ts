@@ -3,6 +3,9 @@ import { style } from '@vanilla-extract/css';
 import { media } from '@/styles/bundle.css';
 
 export const sLayout = style({
+	maxWidth: 2400,
+	margin: 'auto',
+
 	'@media': {
 		[media.device.desktop]: {
 			paddingInline: '20px',
