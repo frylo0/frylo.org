@@ -12,3 +12,12 @@ globalStyle('html', {
 		[media.device.phone]: fontStyles.bodyMobile,
 	},
 });
+
+globalStyle('*', {
+	boxSizing: 'border-box',
+});
+
+globalStyle('a', {
+	color: 'inherit',
+	textDecoration: 'none',
+});

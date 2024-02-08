@@ -3,6 +3,8 @@ import { Metadata } from 'next';
 import '@/styles/global-in-js.css';
 import '@/styles/global-in-css.css';
 
+import { IsDevelopment } from '@/components/common/IsDevelopment/IsDevelopment';
+import { breakpoints } from '@/constants/breakpoints';
 import { WithClientAuth } from '@/lib/WithClientAuth';
 
 export const metadata: Metadata = {
@@ -14,7 +16,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body>
-				<WithClientAuth>{children}</WithClientAuth>
+				<WithClientAuth>
+					<IsDevelopment {...breakpoints.tablet} />
+					{children}
+				</WithClientAuth>
 			</body>
 		</html>
 	);
