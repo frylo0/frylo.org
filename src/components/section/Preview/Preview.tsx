@@ -1,5 +1,6 @@
 import cn from 'clsx';
 
+import { Asteroid } from './Asteroid/Asteroid';
 import { sSection, sWord, sWords, sWordSolid, sWordTransparent } from './Preview.css';
 
 interface PreviewProps {
@@ -13,6 +14,8 @@ export const Preview: React.FC<PreviewProps> = ({ className }) => {
 				<span className={cn(sWord, sWordSolid)}>Frontend</span>
 				<span className={cn(sWord, sWordTransparent)}>Developer</span>
 			</div>
+
+			<Asteroid />
 		</section>
 	);
 };

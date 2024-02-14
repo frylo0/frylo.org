@@ -9,6 +9,8 @@ export const sSection = style({
 	flexDirection: 'column',
 	justifyContent: 'center',
 	alignItems: 'center',
+	position: 'relative',
+	overflow: 'hidden',
 });
 
 export const sWords = style({
@@ -21,6 +23,7 @@ export const sWord = style({
 	fontSize: 150,
 	textTransform: 'uppercase',
 	lineHeight: '115%',
+	userSelect: 'none',
 });
 
 export const sWordSolid = style({
@@ -31,4 +34,6 @@ export const sWordSolid = style({
 export const sWordTransparent = style({
 	fontWeight: fontWeight.regular,
 	mixBlendMode: 'overlay',
+	position: 'relative',
+	zIndex: 1,
 });
