@@ -10,13 +10,13 @@ export const sSection = style({
 	justifyContent: 'center',
 	alignItems: 'center',
 	position: 'relative',
-	overflow: 'hidden',
 });
 
 export const sWords = style({
 	display: 'flex',
 	flexDirection: 'column',
 	textAlign: 'center',
+	pointerEvents: 'none',
 });
 
 export const sWord = style({

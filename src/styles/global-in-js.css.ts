@@ -6,6 +6,7 @@ import { fontWeight } from './vars/fontStyles.css';
 globalStyle('.html, .html body', {
 	background: colors.body,
 	color: colors.secondary,
+	overflow: 'hidden visible',
 
 	'@media': {
 		[media.device.desktop]: fontStyles.body,

@@ -15,4 +15,5 @@ export const sBall = style({
 	transform: 'translate(-50%, -50%)',
 	filter: 'drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.1))',
 	pointerEvents: 'none',
+	userSelect: 'none',
 });

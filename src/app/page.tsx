@@ -1,9 +1,8 @@
 import cn from 'clsx';
 import { Metadata } from 'next';
 
-import { Layout } from '@/components/common/Layout/Layout';
 import { Preview } from '@/components/section/Preview/Preview';
-import { sPage } from './page.css';
+import { sBox, sPage } from './page.css';
 
 export const metadata: Metadata = {
 	title: `TypeScript starter for Next.js`,
@@ -13,9 +12,8 @@ export const metadata: Metadata = {
 export default function Page() {
 	return (
 		<main className={cn(sPage)}>
-			<Layout>
-				<Preview />
-			</Layout>
+			<Preview />
+			<div className={cn(sBox)}></div>
 		</main>
 	);
 }

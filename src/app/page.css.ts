@@ -8,3 +8,7 @@ export const sPage = style({
 	gap: layout.page.gap.desktop,
 	paddingBlock: layout.page.paddingBlock.desktop,
 });
+
+export const sBox = style({
+	height: '1000px',
+});
