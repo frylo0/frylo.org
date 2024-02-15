@@ -1,5 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
+import { media } from '@/styles/bundle.css';
+
 export const sAsteroid = style({
 	position: 'absolute',
 	top: 0,
@@ -16,4 +18,11 @@ export const sBall = style({
 	filter: 'drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.1))',
 	pointerEvents: 'none',
 	userSelect: 'none',
+
+	'@media': {
+		[media.device.phone]: {
+			width: 277,
+			height: 238,
+		},
+	},
 });

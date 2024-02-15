@@ -5,11 +5,12 @@ import Image from 'next/image';
 import { CSSProperties, useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import PNG_Topaz from 'src/assets/raster/topaz.png';
 
+import { useLayout } from '@/components/common/Layout/Layout';
 import { sAsteroid, sBall } from './Asteroid.css';
 
-type TCoords = {
-	x: number;
-	y: number;
+type TCoords<T = number> = {
+	x: T;
+	y: T;
 };
 
 type TBall = TCoords & {
@@ -39,6 +40,25 @@ function normalizeRect(rect: DOMRect): DOMRect {
 	};
 }
 
+const phoneWay: TCoords<string>[] = [
+	{ x: '65%', y: '65%' },
+	{ x: '60%', y: '75%' },
+	{ x: '50%', y: '80%' },
+	{ x: '40%', y: '75%' },
+	{ x: '35%', y: '65%' },
+	{ x: '40%', y: '55%' },
+	{ x: '50%', y: '50%' },
+	{ x: '60%', y: '45%' },
+	{ x: '65%', y: '35%' },
+	{ x: '60%', y: '25%' },
+	{ x: '50%', y: '20%' },
+	{ x: '40%', y: '25%' },
+	{ x: '35%', y: '35%' },
+	{ x: '40%', y: '45%' },
+	{ x: '50%', y: '50%' },
+	{ x: '60%', y: '55%' },
+];
+
 export const Asteroid: React.FC<AsteroidProps> = ({
 	className = '',
 	spring = 0.0001,
@@ -46,6 +66,10 @@ export const Asteroid: React.FC<AsteroidProps> = ({
 	spin = 0.01,
 }) => {
 	const [, rerender] = useReducer((v) => v + 1, 0);
+
+	const device = useLayout();
+	const isDesktop = device?.name === 'desktop';
+	const isPhone = device?.name === 'phone';
 
 	const [isFirstLoad, setIsFirstLoad] = useState(true);
 
@@ -55,7 +79,9 @@ export const Asteroid: React.FC<AsteroidProps> = ({
 	const ballRef = useRef<TBall>({ x: 0, y: 0, vx: 0, vy: 0, rotation: 0 });
 	const mouseRef = useRef({ x: 0, y: 0 });
 
+	const mousePhoneInterval = useRef<NodeJS.Timeout>();
 	const animationFrameRef = useRef<number>(0);
+	const phoneStep = useRef<number>(0);
 
 	// Helpers
 
@@ -76,8 +102,29 @@ export const Asteroid: React.FC<AsteroidProps> = ({
 		ball.x += ball.vx;
 		ball.y += ball.vy;
 
-		ball.rotation += ball.vx * spin;
-	}, [friction, spin, spring]);
+		if (isDesktop) {
+			ball.rotation += ball.vx * spin;
+		} else if (isPhone) {
+			ball.rotation += ball.vy * spin * -3;
+		}
+	}, [friction, isDesktop, isPhone, spin, spring]);
+
+	const calcPhoneMouse = useCallback(() => {
+		if (!wrapperElRef.current) return;
+
+		const wrapperRect = normalizeRect(wrapperElRef.current.getBoundingClientRect());
+		const total = phoneWay.length;
+
+		const { x: xPercent, y: yPercent } = phoneWay[phoneStep.current];
+
+		const x = wrapperRect.width * (parseFloat(xPercent) / 100);
+		const y = wrapperRect.height * (parseFloat(yPercent) / 100);
+
+		mouseRef.current = { x, y };
+
+		phoneStep.current += 1;
+		if (phoneStep.current >= total) phoneStep.current = 0;
+	}, []);
 
 	const lifecycle = useCallback(() => {
 		animationFrameRef.current = window.requestAnimationFrame(() => {
@@ -95,21 +142,13 @@ export const Asteroid: React.FC<AsteroidProps> = ({
 
 	const handleMouseMove = useCallback(
 		(e: MouseEvent) => {
+			if (!isDesktop) return;
+
 			if (!wrapperElRef.current) return;
 			if (!ballElRef.current) return;
 
 			const ballRect = normalizeRect(ballElRef.current.getBoundingClientRect());
 			const wrapperRect = normalizeRect(wrapperElRef.current.getBoundingClientRect());
-
-			if (isFirstLoad) {
-				setIsFirstLoad(false);
-
-				const ballCenterX = (ballRect.left + ballRect.right) / 2;
-				const ballCenterY = (ballRect.top + ballRect.bottom) / 2;
-
-				ballRef.current.x = ballCenterX;
-				ballRef.current.y = ballCenterY;
-			}
 
 			const [mouseX, mouseY] = [e.pageX, e.pageY];
 
@@ -125,7 +164,7 @@ export const Asteroid: React.FC<AsteroidProps> = ({
 				y: Math.max(wrapperEdges.top, Math.min(mouseY, wrapperEdges.bottom)),
 			};
 		},
-		[isFirstLoad]
+		[isDesktop]
 	);
 
 	// Effects
@@ -140,11 +179,38 @@ export const Asteroid: React.FC<AsteroidProps> = ({
 		return () => window.removeEventListener('mousemove', handleMouseMove);
 	}, [handleMouseMove]);
 
+	useEffect(() => {
+		if (!isFirstLoad) return;
+		if (!ballElRef.current) return;
+
+		const ballRect = normalizeRect(ballElRef.current.getBoundingClientRect());
+
+		if (isPhone) calcPhoneMouse(); // FIXME: Invalid start mouse on mobile
+
+		setIsFirstLoad(false);
+
+		const ballCenterX = (ballRect.left + ballRect.right) / 2;
+		const ballCenterY = (ballRect.top + ballRect.bottom) / 2;
+
+		ballRef.current.x = ballCenterX;
+		ballRef.current.y = ballCenterY;
+	}, [calcPhoneMouse, isFirstLoad, isPhone]);
+
+	useEffect(() => {
+		if (!isPhone) return clearInterval(mousePhoneInterval.current);
+
+		mousePhoneInterval.current = setInterval(calcPhoneMouse, 700);
+		return () => clearInterval(mousePhoneInterval.current);
+	}, [calcPhoneMouse, isPhone]);
+
 	// Computed styles
 
+	const startOffsetLeft: string = isDesktop ? '60%' : phoneWay[0].x;
+	const startOffsetTop: string = isDesktop ? '50%' : phoneWay[0].y;
+
 	const ballStyles: CSSProperties = {
-		left: isFirstLoad ? '60%' : ballRef.current.x + 'px',
-		top: isFirstLoad ? '50%' : ballRef.current.y + 'px',
+		left: isFirstLoad ? startOffsetLeft : ballRef.current.x + 'px',
+		top: isFirstLoad ? startOffsetTop : ballRef.current.y + 'px',
 	};
 	const imageStyles: CSSProperties = {
 		transform: `rotateZ(${ballRef.current.rotation}deg)`,
@@ -155,15 +221,7 @@ export const Asteroid: React.FC<AsteroidProps> = ({
 	return (
 		<div className={cn(sAsteroid, className)} ref={wrapperElRef}>
 			<div className={cn(sBall)} style={ballStyles}>
-				<Image
-					src={PNG_Topaz}
-					width={727}
-					height={624}
-					alt="Topaz"
-					priority={true}
-					style={imageStyles}
-					ref={ballElRef}
-				/>
+				<Image src={PNG_Topaz} alt="Topaz" priority={true} layout="fill" style={imageStyles} ref={ballElRef} />
 			</div>
 		</div>
 	);

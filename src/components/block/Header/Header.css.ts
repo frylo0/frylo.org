@@ -6,7 +6,7 @@ export const sHeader = style({
 	position: 'relative',
 	paddingInlineStart: 20,
 	zIndex: 2,
-	background: `linear-gradient(to bottom, ${colors.body}e0 -2em, ${colors.body}20)`,
+	background: `linear-gradient(to bottom, ${colors.body}e0 -3em, ${colors.body}20)`,
 
 	'@media': {
 		[media.device.phone]: {

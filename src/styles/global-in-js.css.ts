@@ -1,6 +1,6 @@
 import { globalStyle } from '@vanilla-extract/css';
 
-import { colors, fontStyles, media } from './bundle.css';
+import { colors, fontStyles, layout, media } from './bundle.css';
 import { fontWeight } from './vars/fontStyles.css';
 
 globalStyle('.html, .html body', {
@@ -12,6 +12,18 @@ globalStyle('.html, .html body', {
 		[media.device.desktop]: fontStyles.body,
 		[media.device.tablet]: fontStyles.body,
 		[media.device.phone]: fontStyles.bodyMobile,
+	},
+});
+
+globalStyle('.html body', {
+	gap: layout.page.gap.desktop,
+	paddingBlock: layout.page.paddingBlock.desktop,
+
+	'@media': {
+		[media.device.phone]: {
+			gap: layout.page.gap.phone,
+			paddingBlock: layout.page.paddingBlock.phone,
+		},
 	},
 });
 
