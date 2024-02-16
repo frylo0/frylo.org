@@ -41,22 +41,22 @@ function normalizeRect(rect: DOMRect): DOMRect {
 }
 
 const phoneWay: TCoords<string>[] = [
-	{ x: '65%', y: '65%' },
+	{ x: '60%', y: '65%' },
 	{ x: '60%', y: '75%' },
 	{ x: '50%', y: '80%' },
 	{ x: '40%', y: '75%' },
-	{ x: '35%', y: '65%' },
-	{ x: '40%', y: '55%' },
+	{ x: '40%', y: '70%' },
+	{ x: '40%', y: '60%' },
 	{ x: '50%', y: '50%' },
-	{ x: '60%', y: '45%' },
-	{ x: '65%', y: '35%' },
+	{ x: '55%', y: '45%' },
+	{ x: '60%', y: '35%' },
 	{ x: '60%', y: '25%' },
-	{ x: '50%', y: '20%' },
-	{ x: '40%', y: '25%' },
-	{ x: '35%', y: '35%' },
-	{ x: '40%', y: '45%' },
+	{ x: '50%', y: '25%' },
+	{ x: '40%', y: '20%' },
+	{ x: '40%', y: '30%' },
+	{ x: '40%', y: '40%' },
 	{ x: '50%', y: '50%' },
-	{ x: '60%', y: '55%' },
+	{ x: '55%', y: '55%' },
 ];
 
 export const Asteroid: React.FC<AsteroidProps> = ({
@@ -180,21 +180,23 @@ export const Asteroid: React.FC<AsteroidProps> = ({
 	}, [handleMouseMove]);
 
 	useEffect(() => {
+		if (!device) return;
 		if (!isFirstLoad) return;
 		if (!ballElRef.current) return;
 
 		const ballRect = normalizeRect(ballElRef.current.getBoundingClientRect());
-
-		if (isPhone) calcPhoneMouse(); // FIXME: Invalid start mouse on mobile
-
-		setIsFirstLoad(false);
 
 		const ballCenterX = (ballRect.left + ballRect.right) / 2;
 		const ballCenterY = (ballRect.top + ballRect.bottom) / 2;
 
 		ballRef.current.x = ballCenterX;
 		ballRef.current.y = ballCenterY;
-	}, [calcPhoneMouse, isFirstLoad, isPhone]);
+
+		if (isDesktop) mouseRef.current = { ...ballRef.current };
+		if (isPhone) calcPhoneMouse();
+
+		setIsFirstLoad(false);
+	}, [calcPhoneMouse, device, isDesktop, isFirstLoad, isPhone]);
 
 	useEffect(() => {
 		if (!isPhone) return clearInterval(mousePhoneInterval.current);
@@ -205,8 +207,8 @@ export const Asteroid: React.FC<AsteroidProps> = ({
 
 	// Computed styles
 
-	const startOffsetLeft: string = isDesktop ? '60%' : phoneWay[0].x;
-	const startOffsetTop: string = isDesktop ? '50%' : phoneWay[0].y;
+	const startOffsetLeft: string = isDesktop ? '60%' : phoneWay.at(-1)!.x;
+	const startOffsetTop: string = isDesktop ? '50%' : phoneWay.at(-1)!.y;
 
 	const ballStyles: CSSProperties = {
 		left: isFirstLoad ? startOffsetLeft : ballRef.current.x + 'px',
