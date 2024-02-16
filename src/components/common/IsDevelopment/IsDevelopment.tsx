@@ -1,6 +1,8 @@
+'use client';
+
 import { assignInlineVars } from '@vanilla-extract/dynamic';
 import cn from 'clsx';
-import { useScreen } from 'usehooks-ts';
+import { useWindowSize } from 'usehooks-ts';
 
 import { sHidden, sIsDevelopment, svPosition } from './IsDevelopment.css';
 
@@ -21,7 +23,7 @@ export const IsDevelopment: React.FC<IsDevelopmentProps> = ({
 
 	position = 'fixed',
 }) => {
-	const { width } = useScreen();
+	const { width } = useWindowSize();
 
 	const isVisible = minWidth <= width && width <= maxWidth;
 	const isHidden = !isVisible;

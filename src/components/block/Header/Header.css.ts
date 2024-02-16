@@ -1,12 +1,12 @@
-import { createVar, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 
-import { colors, fontStyles, media } from '@/styles/bundle.css';
-
-export const svDotColor = createVar('dot-color');
+import { colors, layout, media } from '@/styles/bundle.css';
 
 export const sHeader = style({
 	position: 'relative',
 	paddingInlineStart: 20,
+	zIndex: 2,
+	background: `linear-gradient(to bottom, ${colors.body}e0 -3em, ${colors.body}20)`,
 
 	'@media': {
 		[media.device.phone]: {
@@ -20,11 +20,11 @@ export const sContent = style({
 	flexDirection: 'row',
 	justifyContent: 'space-between',
 	alignItems: 'center',
-	height: 109,
+	height: layout.header.height.desktop,
 
 	'@media': {
 		[media.device.phone]: {
-			height: 50,
+			height: layout.header.height.phone,
 		},
 	},
 });
@@ -45,7 +45,7 @@ export const sDot = style({
 	width: 12,
 	height: 12,
 	borderRadius: '50%',
-	background: svDotColor,
+	background: 'var(--dot-color)',
 
 	'@media': {
 		[media.device.phone]: {
@@ -86,15 +86,7 @@ export const sPermalink = style({
 	},
 });
 
-export const sNickname = style({
-	...fontStyles.body,
-
-	'@media': {
-		[media.device.phone]: {
-			...fontStyles.bodyMobile,
-		},
-	},
-});
+export const sNickname = style({});
 export const sIcon = style({
 	width: 20,
 	height: 20,

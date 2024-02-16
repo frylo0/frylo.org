@@ -1,33 +1,20 @@
-import { assignInlineVars } from '@vanilla-extract/dynamic';
 import cn from 'clsx';
 import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 import PNG_GitHub from '@/assets/raster/github.png';
 import PNG_GitLab from '@/assets/raster/gitlab.png';
 import SVG_Logo from '@/assets/vector/logo.svg?url';
 import { Layout } from '@/components/common/Layout/Layout';
 import { colors } from '@/styles/vars/colors.css';
-import {
-	sContent,
-	sDot,
-	sDots,
-	sHeader,
-	sIcon,
-	sLinks,
-	sLogo,
-	sLogoImg,
-	sNickname,
-	sPermalink,
-	svDotColor,
-} from './Header.css';
+import { sContent, sDot, sDots, sHeader, sIcon, sLinks, sLogo, sLogoImg, sNickname, sPermalink } from './Header.css';
 
 export interface HeaderProps {
 	className?: string;
 }
 
-const withColor = (color: string) => assignInlineVars({ [svDotColor]: color });
+const withColor = (color: string) => ({ '--dot-color': color }) as CSSProperties;
 
 export const Header: React.FC<HeaderProps> = ({ className = '' }) => {
 	return (

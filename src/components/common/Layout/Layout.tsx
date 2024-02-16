@@ -35,9 +35,10 @@ export function useLayout(): TDevice | null {
 	}, []);
 
 	useEffect(() => {
+		if (!device) handleResize();
 		window.addEventListener('resize', handleResize);
 		return () => window.removeEventListener('resize', handleResize);
-	}, [handleResize]);
+	}, [device, handleResize]);
 
 	return device;
 }
