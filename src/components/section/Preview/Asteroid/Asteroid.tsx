@@ -4,6 +4,7 @@ import cn from 'clsx';
 import Image from 'next/image';
 import { CSSProperties, useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import PNG_Topaz from 'src/assets/raster/topaz.png';
+import { useInterval } from 'usehooks-ts';
 
 import { useLayout } from '@/components/common/Layout/Layout';
 import { sAsteroid, sBall } from './Asteroid.css';
@@ -77,9 +78,10 @@ export const Asteroid: React.FC<AsteroidProps> = ({
 	const ballElRef = useRef<HTMLImageElement | null>(null);
 
 	const ballRef = useRef<TBall>({ x: 0, y: 0, vx: 0, vy: 0, rotation: 0 });
-	const mouseRef = useRef({ x: 0, y: 0 });
+	const mouseRef = useRef<TCoords>({ x: 0, y: 0 });
+	const scrollPrevRef = useRef<TCoords>({ x: 0, y: 0 });
+	const scrollDiffRef = useRef<TCoords>({ x: 0, y: 0 });
 
-	const mousePhoneInterval = useRef<NodeJS.Timeout>();
 	const animationFrameRef = useRef<number>(0);
 	const phoneStep = useRef<number>(0);
 
@@ -92,8 +94,13 @@ export const Asteroid: React.FC<AsteroidProps> = ({
 		const dx = mouse.x - ball.x;
 		const dy = mouse.y - ball.y;
 
-		const ax = dx * spring;
-		const ay = dy * spring;
+		let ax = dx * spring;
+		let ay = dy * spring;
+
+		if (isPhone) {
+			ax += scrollDiffRef.current.x * spring * 3;
+			ay += scrollDiffRef.current.y * spring * 3;
+		}
 
 		ball.vx += ax;
 		ball.vy += ay;
@@ -167,6 +174,20 @@ export const Asteroid: React.FC<AsteroidProps> = ({
 		[isDesktop]
 	);
 
+	const calcPhoneScroll = useCallback(() => {
+		if (!device) return;
+		if (!isPhone) return;
+
+		const scroll: TCoords = { x: window.scrollX, y: window.scrollY };
+
+		scrollDiffRef.current = {
+			x: scroll.x - scrollPrevRef.current.x,
+			y: scroll.y - scrollPrevRef.current.y,
+		};
+
+		scrollPrevRef.current = scroll;
+	}, [device, isPhone]);
+
 	// Effects
 
 	useEffect(() => {
@@ -198,12 +219,8 @@ export const Asteroid: React.FC<AsteroidProps> = ({
 		setIsFirstLoad(false);
 	}, [calcPhoneMouse, device, isDesktop, isFirstLoad, isPhone]);
 
-	useEffect(() => {
-		if (!isPhone) return clearInterval(mousePhoneInterval.current);
-
-		mousePhoneInterval.current = setInterval(calcPhoneMouse, 700);
-		return () => clearInterval(mousePhoneInterval.current);
-	}, [calcPhoneMouse, isPhone]);
+	useInterval(calcPhoneMouse, isPhone ? 700 : null);
+	useInterval(calcPhoneScroll, isPhone ? 100 : null);
 
 	// Computed styles
 
