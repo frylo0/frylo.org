@@ -15,7 +15,3 @@ export const sPage = style({
 		},
 	},
 });
-
-export const sBox = style({
-	height: '1000px',
-});

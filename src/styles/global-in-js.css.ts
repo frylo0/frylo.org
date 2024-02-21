@@ -36,6 +36,10 @@ globalStyle('a', {
 	textDecoration: 'none',
 });
 
+globalStyle(`.html h1, .html h2, .html h3, .html h4, .html h5, .html h6`, {
+	lineHeight: fontStyles.body.lineHeight,
+});
+
 globalStyle('.html strong', {
 	fontWeight: fontWeight.semiBold,
 });
