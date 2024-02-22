@@ -33,7 +33,11 @@ export const sCol3 = style({
 	gap: 80,
 });
 
-export const sCol4 = style({});
+export const sCol4 = style({
+	display: 'flex',
+	flexDirection: 'column',
+	gap: 80,
+});
 
 export const sPhoto = style({
 	width: 296,
@@ -79,9 +83,23 @@ export const sTitle = style({
 
 export const sSubtitle = style({});
 
-export const sLanguageItems = style({});
+export const sLanguageItems = style({
+	display: 'flex',
+	flexDirection: 'row',
+	gap: 40,
+});
 
-export const sContactItems = style({});
+export const sInterestItems = style({
+	display: 'flex',
+	flexDirection: 'row',
+	gap: 40,
+});
+
+export const sContactItems = style({
+	display: 'flex',
+	flexDirection: 'column',
+	gap: 40,
+});
 
 export const sExperience = style({});
 
@@ -107,12 +125,75 @@ export const sLocation = style({});
 
 // Languages
 
-export const sLanguage = style({});
+export const sLanguage = style({
+	display: 'flex',
+	flexDirection: 'column',
+	alignItems: 'center',
+});
+
+export const sLanguageChart = style({
+	width: 90,
+	height: 90,
+});
+
+export const sChartBody = style({
+	strokeWidth: 3,
+	fill: 'none',
+	stroke: colors.primaryLighter,
+});
+
+export const sChartOutline = style({
+	strokeWidth: 3,
+	fill: 'none',
+	stroke: colors.primaryDarker,
+});
+
+export const sChartPercent = style({
+	fill: colors.secondary,
+	fontSize: 16,
+	fontWeight: fontWeight.semiBold,
+});
+
+export const sLanguageName = style({
+	textTransform: 'uppercase',
+	fontWeight: fontWeight.semiBold,
+	fontSize: 16,
+	marginBlockStart: 10,
+});
+
+export const sLanguageLevel = style({
+	whiteSpace: 'nowrap',
+});
 
 // Interest
 
-export const sInterest = style({});
+export const sInterest = style({
+	display: 'flex',
+	flexDirection: 'column',
+	alignItems: 'center',
+	gap: 10,
+});
+
+export const sInterestIcon = style({
+	width: 70,
+	height: 70,
+	opacity: '0.7',
+	fontWeight: fontWeight.regular,
+});
+
+export const sInterestName = style({});
 
 // Contact
 
-export const sContact = style({});
+export const sContact = style({
+	display: 'flex',
+	flexDirection: 'column',
+	gap: 10,
+});
+
+export const sContactName = style({
+	fontWeight: fontWeight.semiBold,
+	fontSize: 16,
+});
+
+export const sContactLink = style({});

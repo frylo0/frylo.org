@@ -1,5 +1,6 @@
 import cn from 'clsx';
 import Image, { StaticImageData } from 'next/image';
+import Link from 'next/link';
 
 import PNG_Anime from '@/assets/raster/anime.png';
 import PNG_Basketball from '@/assets/raster/basketball.png';
@@ -7,19 +8,30 @@ import PNG_Frylo from '@/assets/raster/frylo.png';
 import PNG_Mate from '@/assets/raster/mate.png';
 import PNG_Travel from '@/assets/raster/travel.png';
 import {
+	sChartBody,
+	sChartOutline,
+	sChartPercent,
 	sCol1,
 	sCol2,
 	sCol3,
 	sCol4,
 	sContact,
 	sContactItems,
+	sContactLink,
+	sContactName,
 	sDegree,
 	sExperience,
 	sGeneralInfo,
 	sInstitution,
 	sInterest,
+	sInterestIcon,
+	sInterestItems,
+	sInterestName,
 	sLanguage,
+	sLanguageChart,
 	sLanguageItems,
+	sLanguageLevel,
+	sLanguageName,
 	sLocation,
 	sMessage,
 	sNick,
@@ -110,10 +122,12 @@ export const CV: React.FC<CVProps> = ({ className = '' }) => {
 					<div className={cn(sPart)}>
 						<h2 className={cn(sTitle)}>Interest</h2>
 
-						<Interest icon={PNG_Mate} name="Mate tea" />
-						<Interest icon={PNG_Basketball} name="Basketball" />
-						<Interest icon={PNG_Anime} name="Anime" />
-						<Interest icon={PNG_Travel} name="Travel" />
+						<div className={cn(sInterestItems)}>
+							<Interest icon={PNG_Mate} name="Mate tea" />
+							<Interest icon={PNG_Basketball} name="Basketball" />
+							<Interest icon={PNG_Anime} name="Anime" />
+							<Interest icon={PNG_Travel} name="Travel" />
+						</div>
 					</div>
 
 					<div className={cn(sPart)}>
@@ -169,8 +183,48 @@ interface LanguageProps extends React.PropsWithChildren {
 	percent: number;
 }
 
-const Language: React.FC<LanguageProps> = ({ className }) => {
-	return <div className={cn(sLanguage, className)}></div>;
+const Language: React.FC<LanguageProps> = ({ className, name, level, percent }) => {
+	return (
+		<div className={cn(sLanguage, className)}>
+			<PieChart className={cn(sLanguageChart)} percent={percent} />
+			<div className={cn(sLanguageName)}>{name}</div>
+			<div className={cn(sLanguageLevel)}>{level}</div>
+		</div>
+	);
+};
+
+interface PieChartProps {
+	className?: string;
+	percent: number;
+}
+
+const PieChart: React.FC<PieChartProps> = ({ className, percent }) => {
+	const size = 90;
+	const strokeWidth = 3;
+
+	const radius = (size - strokeWidth) / 2;
+	const circumference = 2 * Math.PI * radius;
+	const strokeDasharray = `${circumference} ${circumference}`;
+	const strokeDashoffset = circumference - (percent / 100) * circumference;
+
+	return (
+		<svg className={className} width={size} height={size} viewBox={`0 0 ${size} ${size}`} fill="none">
+			<circle className={cn(sChartBody)} cx={size / 2} cy={size / 2} r={radius} />
+			<circle
+				className={cn(sChartOutline)}
+				cx={size / 2}
+				cy={size / 2}
+				r={radius}
+				strokeDasharray={strokeDasharray}
+				strokeDashoffset={strokeDashoffset}
+				strokeLinecap="square"
+				transform={`rotate(-90 ${size / 2} ${size / 2})`}
+			/>
+			<text className={cn(sChartPercent)} x="50%" y="50%" dominantBaseline="middle" textAnchor="middle">
+				{percent}%
+			</text>
+		</svg>
+	);
 };
 
 // Interests item
@@ -181,8 +235,13 @@ interface InterestProps extends React.PropsWithChildren {
 	name: string;
 }
 
-const Interest: React.FC<InterestProps> = ({ className }) => {
-	return <div className={cn(sInterest, className)}></div>;
+const Interest: React.FC<InterestProps> = ({ className, icon, name }) => {
+	return (
+		<figure className={cn(sInterest, className)}>
+			<Image className={cn(sInterestIcon)} src={icon} alt={`${name} icon`} width={67} height={69} />
+			<figcaption className={cn(sInterestName)}>{name}</figcaption>
+		</figure>
+	);
 };
 
 // Contact item
@@ -194,6 +253,16 @@ interface ContactProps extends React.PropsWithChildren {
 	url: string;
 }
 
-const Contact: React.FC<ContactProps> = ({ className }) => {
-	return <div className={cn(sContact, className)}></div>;
+const Contact: React.FC<ContactProps> = ({ className, name, label, url }) => {
+	return (
+		<div className={cn(sContact, className)}>
+			<h3 className={cn(sContactName)}>{name}</h3>
+
+			<p>
+				<Link className={cn(sContactLink)} href={url} target="_blank" rel="noreferrer noopener">
+					{label}
+				</Link>
+			</p>
+		</div>
+	);
 };
