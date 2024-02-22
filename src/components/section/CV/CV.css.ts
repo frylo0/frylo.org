@@ -10,4 +10,5 @@ export const sSection = style({
 	backgroundColor: colors.bodyLighter,
 	borderRadius: 100,
 	boxShadow: '0 34px 100px #00000010',
+	position: 'relative',
 });

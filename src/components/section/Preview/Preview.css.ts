@@ -4,7 +4,7 @@ import { layout, media } from '@/styles/bundle.css';
 import { fontWeight } from '@/styles/vars/fontStyles.css';
 
 export const sSection = style({
-	height: `calc(100svh - ${layout.header.height.desktop}px - ${layout.page.paddingBlock.desktop}px * 2 - ${layout.page.gap.desktop}px * 2)`,
+	height: `calc(100svh - ${layout.header.height.desktop}px - ${layout.page.paddingBlock.desktop}px * 2 - ${layout.page.gap.desktop}px)`,
 	display: 'flex',
 	flexDirection: 'column',
 	justifyContent: 'center',
@@ -13,7 +13,7 @@ export const sSection = style({
 
 	'@media': {
 		[media.device.phone]: {
-			height: `calc(100svh - ${layout.header.height.phone}px - ${layout.page.paddingBlock.phone}px * 2 - ${layout.page.gap.phone}px * 2)`,
+			height: `calc(100svh - ${layout.header.height.phone}px - ${layout.page.paddingBlock.phone}px * 2 - ${layout.page.gap.phone}px)`,
 		},
 	},
 });
