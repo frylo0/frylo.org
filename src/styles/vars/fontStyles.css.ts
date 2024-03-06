@@ -19,7 +19,7 @@ export const fontStyles = {
 		fontFamily: fonts.jost,
 		fontSize: 16,
 		fontWeight: fontWeight.light,
-		lineHeight: '23px',
+		lineHeight: '143.5%',
 	},
 	bodyMobile: {
 		fontFamily: fonts.jost,
