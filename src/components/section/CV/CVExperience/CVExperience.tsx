@@ -76,7 +76,7 @@ export const CVExperience: React.FC<CVExperienceProps> = ({ className = '' }) =>
 
 			<div className={cn(sCompany)}>
 				<div className={cn(sLogo)}>
-					<Image src={selected.company.logo} alt={selected.company.name} width={148} height={148} />
+					<Image src={selected.company.logo} alt={selected.company.name} layout="fill" />
 				</div>
 				<div className={cn(sInfo)}>
 					<div className={cn(sName)}>{selected.company.name}</div>

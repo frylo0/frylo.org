@@ -1,7 +1,10 @@
 import { globalStyle, style } from '@vanilla-extract/css';
 
-import { colors } from '@/styles/bundle.css';
+import { breakpoints } from '@/constants/breakpoints';
+import { colors, media } from '@/styles/bundle.css';
 import { fontStyles, fontWeight } from '@/styles/vars/fontStyles.css';
+
+export const laptop = media.widthBetween(breakpoints.desktop.minWidth, 1600);
 
 export const sCVExperience = style({});
 
@@ -19,13 +22,27 @@ export const sGraph = style({
 
 export const sCompany = style({
 	marginBlockStart: 50,
-	display: 'flex',
-	flexDirection: 'row',
+	display: 'grid',
+	gridTemplateRows: `auto`,
+	gridTemplateColumns: `auto auto auto`,
 	gap: 70,
+
+	'@media': {
+		[laptop]: {
+			gridTemplateRows: `auto auto`,
+			gridTemplateColumns: `auto auto`,
+			gridTemplateAreas: `
+				'logo description'
+				'meta description'`,
+			gap: `20px 40px`,
+		},
+	},
 });
 
 export const sLogo = style({
 	position: 'relative',
+	width: 148,
+	height: 148,
 
 	'::after': {
 		content: '',
@@ -37,15 +54,36 @@ export const sLogo = style({
 		backgroundColor: colors.primary,
 		mixBlendMode: 'hard-light',
 	},
+
+	'@media': {
+		[laptop]: {
+			gridArea: 'logo',
+			alignSelf: 'start',
+			width: 70,
+			height: 70,
+		},
+	},
 });
 
 export const sInfo = style({
 	display: 'flex',
 	flexDirection: 'column',
 	gap: 20,
+
+	'@media': {
+		[laptop]: {
+			gridArea: 'meta',
+		},
+	},
 });
 
-export const sDescription = style({});
+export const sDescription = style({
+	'@media': {
+		[laptop]: {
+			gridArea: 'description',
+		},
+	},
+});
 
 globalStyle(`${sDescription} p`, {
 	marginBlockEnd: 16,
@@ -130,6 +168,12 @@ export const sFeatures = style({
 	flexDirection: 'column',
 	gap: 10,
 	width: 345,
+
+	'@media': {
+		[laptop]: {
+			width: 'auto',
+		},
+	},
 });
 
 export const sWebsite = style({});
