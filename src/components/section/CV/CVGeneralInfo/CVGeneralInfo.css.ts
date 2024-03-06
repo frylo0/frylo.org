@@ -4,7 +4,7 @@ import { breakpoints } from '@/constants/breakpoints';
 import { colors, media } from '@/styles/bundle.css';
 import { fontStyles, fontWeight } from '@/styles/vars/fontStyles.css';
 
-const laptop = media.widthBetween(breakpoints.desktop.minWidth, 1900);
+export const laptop = media.widthBetween(breakpoints.desktop.minWidth, 1900);
 
 export const sCVGeneralInfo = style({
 	'@media': {
@@ -18,7 +18,7 @@ export const sCVGeneralInfo = style({
 export const sLayout = style({
 	display: 'flex',
 	flexDirection: 'row',
-	gap: 74,
+	gap: 70,
 });
 
 export const sCol1 = style({});
@@ -40,9 +40,15 @@ export const sInfoGraphics = style({
 
 	'@media': {
 		[laptop]: {
-			gap: `60px 0`,
+			gap: `40px 60px`,
 		},
 	},
+});
+
+export const sPcCol = style({
+	display: 'flex',
+	flexDirection: 'column',
+	gap: 80,
 });
 
 export const sPhoto = style({

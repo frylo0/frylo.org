@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
 import { colors } from '@/styles/bundle.css';
+import { laptop } from './CVGeneralInfo/CVGeneralInfo.css';
 
 export const sSection = style({
 	display: 'flex',
@@ -18,7 +19,13 @@ export const sContent = style({
 	position: 'relative',
 	display: 'flex',
 	flexDirection: 'column',
-	gap: 74,
+	gap: 70,
+
+	'@media': {
+		[laptop]: {
+			gap: 80,
+		},
+	},
 });
 
 export const sRocky = style({

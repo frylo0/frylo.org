@@ -1,5 +1,9 @@
+'use client';
+
 import cn from 'clsx';
 import Image from 'next/image';
+import { useState } from 'react';
+import { useEventCallback, useEventListener } from 'usehooks-ts';
 
 import PNG_Anime from '@/assets/raster/anime.png';
 import PNG_Basketball from '@/assets/raster/basketball.png';
@@ -8,6 +12,7 @@ import PNG_Mate from '@/assets/raster/mate.png';
 import PNG_Travel from '@/assets/raster/travel.png';
 import { Contact } from './Contact/Contact';
 import {
+	laptop,
 	sCol1,
 	sCol2,
 	sContactItems,
@@ -20,6 +25,7 @@ import {
 	sMessage,
 	sNick,
 	sPart,
+	sPcCol,
 	sPhoto,
 	sTextAccent,
 	sTextPart,
@@ -34,6 +40,14 @@ export interface CVGeneralInfoProps {
 }
 
 export const CVGeneralInfo: React.FC<CVGeneralInfoProps> = ({ className = '' }) => {
+	const [isLaptop, setIsLaptop] = useState(false);
+
+	const handleResize = useEventCallback(() => {
+		setIsLaptop(window.matchMedia(laptop).matches);
+	});
+
+	useEventListener('resize', handleResize);
+
 	return (
 		<div className={cn(sCVGeneralInfo, sLayout, className)}>
 			<div className={cn(sTextPart, sLayout)}>
@@ -75,58 +89,70 @@ export const CVGeneralInfo: React.FC<CVGeneralInfoProps> = ({ className = '' }) 
 			</div>
 
 			<div className={cn(sInfoGraphics, sLayout)}>
-				<div className={cn(sPart)}>
-					<h2 className={cn(sTitle)}>Education</h2>
+				<PcCol isLaptop={isLaptop}>
+					<div className={cn(sPart)}>
+						<h2 className={cn(sTitle)}>Education</h2>
 
-					<div className={cn(sEducationItems)}>
-						<Institution
-							yearBegin={2016}
-							yearEnd={2020}
-							degree="Programming in computer systems"
-							institution="Tauride College at CFU named after V.I.Vernadsky"
-							location="Crimea, Ukraine"
-						/>
-						<Institution
-							yearBegin={2020}
-							yearEnd={2024}
-							degree="Bachelor in Software Engineering"
-							institution="Crimean Federal Univercity"
-							location="Crimea, Ukraine"
-						/>
+						<div className={cn(sEducationItems)}>
+							<Institution
+								yearBegin={2016}
+								yearEnd={2020}
+								degree="Programming in computer systems"
+								institution="Tauride College at CFU named after V.I.Vernadsky"
+								location="Crimea, Ukraine"
+							/>
+							<Institution
+								yearBegin={2020}
+								yearEnd={2024}
+								degree="Bachelor in Software Engineering"
+								institution="Crimean Federal Univercity"
+								location="Crimea, Ukraine"
+							/>
+						</div>
 					</div>
-				</div>
 
-				<div className={cn(sPart)}>
-					<h2 className={cn(sTitle)}>Languages</h2>
+					<div className={cn(sPart)}>
+						<h2 className={cn(sTitle)}>Languages</h2>
 
-					<div className={cn(sLanguageItems)}>
-						<Language name="Russian" level="Native Language" percent={100} />
-						<Language name="English" level="Advanced Level" percent={80} />
-						<Language name="Ukrainian" level="Native Language" percent={90} />
+						<div className={cn(sLanguageItems)}>
+							<Language name="Russian" level="Native Language" percent={100} />
+							<Language name="English" level="Advanced Level" percent={80} />
+							<Language name="Ukrainian" level="Native Language" percent={90} />
+						</div>
 					</div>
-				</div>
+				</PcCol>
 
-				<div className={cn(sPart)}>
-					<h2 className={cn(sTitle)}>Interest</h2>
+				<PcCol isLaptop={isLaptop}>
+					<div className={cn(sPart)}>
+						<h2 className={cn(sTitle)}>Interest</h2>
 
-					<div className={cn(sInterestItems)}>
-						<Interest icon={PNG_Mate} name="Mate tea" />
-						<Interest icon={PNG_Basketball} name="Basketball" />
-						<Interest icon={PNG_Anime} name="Anime" />
-						<Interest icon={PNG_Travel} name="Travel" />
+						<div className={cn(sInterestItems)}>
+							<Interest icon={PNG_Mate} name="Mate tea" />
+							<Interest icon={PNG_Basketball} name="Basketball" />
+							<Interest icon={PNG_Anime} name="Anime" />
+							<Interest icon={PNG_Travel} name="Travel" />
+						</div>
 					</div>
-				</div>
 
-				<div className={cn(sPart)}>
-					<h2 className={cn(sTitle)}>Contacts</h2>
+					<div className={cn(sPart)}>
+						<h2 className={cn(sTitle)}>Contacts</h2>
 
-					<div className={cn(sContactItems)}>
-						<Contact name="Email" label="frylo.d.ts@gmail.com" url="mailto:frylo.d.ts@gmail.com" />
-						<Contact name="LinkedIn" label="linkedin.com/in/frylo" url="https://linkedin.com/in/frylo" />
-						<Contact name="YouTube" label="youtube.com/@frylo0" url="https://youtube.com/@frylo0" />
+						<div className={cn(sContactItems)}>
+							<Contact name="Email" label="frylo.d.ts@gmail.com" url="mailto:frylo.d.ts@gmail.com" />
+							<Contact name="LinkedIn" label="linkedin.com/in/frylo" url="https://linkedin.com/in/frylo" />
+							<Contact name="YouTube" label="youtube.com/@frylo0" url="https://youtube.com/@frylo0" />
+						</div>
 					</div>
-				</div>
+				</PcCol>
 			</div>
 		</div>
 	);
+};
+
+interface PcColProps extends React.PropsWithChildren {
+	isLaptop: boolean;
+}
+
+const PcCol: React.FC<PcColProps> = ({ isLaptop, children }) => {
+	return isLaptop ? children : <div className={cn(sPcCol)}>{children}</div>;
 };
