@@ -16,6 +16,9 @@ export const sSection = style({
 
 export const sContent = style({
 	position: 'relative',
+	display: 'flex',
+	flexDirection: 'column',
+	gap: 74,
 });
 
 export const sRocky = style({

@@ -1,9 +1,21 @@
 import { style } from '@vanilla-extract/css';
 
-import { colors } from '@/styles/bundle.css';
+import { breakpoints } from '@/constants/breakpoints';
+import { colors, media } from '@/styles/bundle.css';
 import { fontStyles, fontWeight } from '@/styles/vars/fontStyles.css';
 
+const laptop = media.widthBetween(breakpoints.desktop.minWidth, 1900);
+
 export const sCVGeneralInfo = style({
+	'@media': {
+		[laptop]: {
+			display: 'flex',
+			flexDirection: 'column',
+		},
+	},
+});
+
+export const sLayout = style({
 	display: 'flex',
 	flexDirection: 'row',
 	gap: 74,
@@ -17,16 +29,20 @@ export const sCol2 = style({
 	gap: 20,
 });
 
-export const sCol3 = style({
+export const sTextPart = style({
 	display: 'flex',
-	flexDirection: 'column',
-	gap: 80,
+	flexDirection: 'row',
 });
 
-export const sCol4 = style({
-	display: 'flex',
-	flexDirection: 'column',
-	gap: 80,
+export const sInfoGraphics = style({
+	display: 'grid',
+	gridTemplateColumns: 'auto auto',
+
+	'@media': {
+		[laptop]: {
+			gap: `60px 0`,
+		},
+	},
 });
 
 export const sPhoto = style({
@@ -73,6 +89,18 @@ export const sTitle = style({
 
 export const sSubtitle = style({});
 
+export const sEducationItems = style({
+	display: 'flex',
+	flexDirection: 'column',
+	gap: 40,
+
+	'@media': {
+		[laptop]: {
+			flexDirection: 'row',
+		},
+	},
+});
+
 export const sLanguageItems = style({
 	display: 'flex',
 	flexDirection: 'row',
@@ -89,6 +117,12 @@ export const sContactItems = style({
 	display: 'flex',
 	flexDirection: 'column',
 	gap: 40,
+
+	'@media': {
+		[laptop]: {
+			flexDirection: 'row',
+		},
+	},
 });
 
 export const sExperience = style({});
