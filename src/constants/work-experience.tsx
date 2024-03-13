@@ -1,11 +1,17 @@
 import { StaticImageData } from 'next/image';
 import { ReactNode } from 'react';
 
+import PNG_Genesis_Mob from '@/assets/raster/exp-genesis-mobile.png';
 import PNG_Genesis from '@/assets/raster/exp-genesis.png';
+import PNG_JoyDev_Mob from '@/assets/raster/exp-joydev-mobile.png';
 import PNG_JoyDev from '@/assets/raster/exp-joydev.png';
+import PNG_Kindda_Mob from '@/assets/raster/exp-kindda-mobile.png';
 import PNG_Kindda from '@/assets/raster/exp-kindda.png';
+import PNG_RNCB_Mob from '@/assets/raster/exp-rncb-mobile.png';
 import PNG_RNCB from '@/assets/raster/exp-rncb.png';
+import PNG_VK_Mob from '@/assets/raster/exp-vk-mobile.png';
 import PNG_VK from '@/assets/raster/exp-vk.png';
+import PNG_Xsolla_Mob from '@/assets/raster/exp-xsolla-mobile.png';
 import PNG_Xsolla from '@/assets/raster/exp-xsolla.png';
 import {
 	Backbone,
@@ -29,6 +35,7 @@ import {
 export type TExperience = {
 	company: {
 		logo: StaticImageData;
+		logoCentred: StaticImageData;
 		name: string;
 		website: string;
 		url: string;
@@ -47,6 +54,7 @@ export type TExperience = {
 const Genesis: TExperience = {
 	company: {
 		logo: PNG_Genesis,
+		logoCentred: PNG_Genesis_Mob,
 		name: 'Clinic Genesis',
 		website: 'клиника-генезис.рф',
 		url: 'https://клиника-генезис.рф/',
@@ -84,6 +92,7 @@ const Genesis: TExperience = {
 const RNCB: TExperience = {
 	company: {
 		logo: PNG_RNCB,
+		logoCentred: PNG_RNCB_Mob,
 		name: 'RNCB',
 		website: 'rncb.ru',
 		url: 'https://www.rncb.ru/',
@@ -124,6 +133,7 @@ const RNCB: TExperience = {
 const Kindda: TExperience = {
 	company: {
 		logo: PNG_Kindda,
+		logoCentred: PNG_Kindda_Mob,
 		name: 'Kindda',
 		website: 'linkedin.com/company/kindda',
 		url: 'https://www.linkedin.com/company/kindda/',
@@ -155,6 +165,7 @@ const Kindda: TExperience = {
 const Xsolla: TExperience = {
 	company: {
 		logo: PNG_Xsolla,
+		logoCentred: PNG_Xsolla_Mob,
 		name: 'Xsolla',
 		website: 'xsolla.com',
 		url: 'https://xsolla.com/',
@@ -192,6 +203,7 @@ const Xsolla: TExperience = {
 const VK: TExperience = {
 	company: {
 		logo: PNG_VK,
+		logoCentred: PNG_VK_Mob,
 		name: 'VK',
 		website: 'vk.com',
 		url: 'https://dev.vk.com/en',
@@ -232,6 +244,7 @@ const VK: TExperience = {
 const JoyDev: TExperience = {
 	company: {
 		logo: PNG_JoyDev,
+		logoCentred: PNG_JoyDev_Mob,
 		name: 'JoyDev',
 		website: 'joy-dev.ru',
 		url: 'https://joy-dev.ru/',
