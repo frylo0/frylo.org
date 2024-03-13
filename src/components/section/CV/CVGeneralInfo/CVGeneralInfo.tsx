@@ -10,6 +10,7 @@ import PNG_Basketball from '@/assets/raster/basketball.png';
 import PNG_Frylo from '@/assets/raster/frylo.png';
 import PNG_Mate from '@/assets/raster/mate.png';
 import PNG_Travel from '@/assets/raster/travel.png';
+import { useLayout } from '@/components/common/Layout/Layout';
 import { Contact } from './Contact/Contact';
 import {
 	laptop,
@@ -18,6 +19,8 @@ import {
 	sContactItems,
 	sCVGeneralInfo,
 	sEducationItems,
+	sHeader,
+	sImg,
 	sInfoGraphics,
 	sInterestItems,
 	sLanguageItems,
@@ -42,54 +45,82 @@ export interface CVGeneralInfoProps {
 export const CVGeneralInfo: React.FC<CVGeneralInfoProps> = ({ className = '' }) => {
 	const [isLaptop, setIsLaptop] = useState(false);
 
+	const device = useLayout();
+
+	const isPhone = device?.name === 'phone';
+	const isDesktop = device?.name === 'desktop';
+
 	const handleResize = useEventCallback(() => {
 		setIsLaptop(window.matchMedia(laptop).matches);
 	});
 
 	useEventListener('resize', handleResize);
 
+	const thePhoto = (
+		<div className={cn(sPhoto)}>
+			<Image className={cn(sImg)} src={PNG_Frylo} alt="frylo" />
+		</div>
+	);
+
+	const theNick = (
+		<h1 className={cn(sNick)}>
+			frylo<span className={cn(sTextAccent)}>.d.ts</span>
+		</h1>
+	);
+
+	const theMessage = (
+		<div className={cn(sMessage)}>
+			<p>
+				In the dynamic realm of web development, I stand as a seasoned Senior Frontend Developer with a rich tapestry of
+				6 years of experience. My journey has cultivated a vibrant and extensive tech stack, a versatile toolkit capable
+				of crafting any technical solution that the digital landscape demands.{' '}
+			</p>
+			<p>
+				With mastery in technologies like React, JavaScript, HTML, and CSS, I am your steadfast partner in translating
+				ideas into pixel-perfect, user-centric web applications. My technical prowess is more than a skill; it&apos;s an
+				art form honed through years of immersive learning and dedicated practice.{' '}
+			</p>
+			<p>
+				But my journey doesn&apos;t stop at code. I&apos;ve walked the path of leadership, serving as both a Team Lead
+				and a Frontend CTO. These roles have sculpted me into a strategic thinker, capable of orchestrating and
+				inspiring teams to craft elegant, scalable, and business-aligned frontend solutions. As a collaborator,
+				I&apos;ve cultivated unity and shared vision, propelling projects to new heights.{' '}
+			</p>
+			<p>
+				I stand ready to embark on a new adventure with your organization, driven by the passion to harness
+				technology&apos;s power for innovation and excellence. Together, we will weave compelling digital experiences,
+				transforming challenges into opportunities on this ever-evolving frontier.{' '}
+			</p>
+		</div>
+	);
+
 	return (
 		<div className={cn(sCVGeneralInfo, sLayout, className)}>
 			<div className={cn(sTextPart, sLayout)}>
-				<div className={cn(sCol1)}>
-					<div className={cn(sPhoto)}>
-						<Image src={PNG_Frylo} width={296} height={296} alt="frylo" />
-					</div>
-				</div>
+				{isDesktop && (
+					<>
+						<div className={cn(sCol1)}>{thePhoto}</div>
 
-				<div className={cn(sCol2)}>
-					<h1 className={cn(sNick)}>
-						frylo<span className={cn(sTextAccent)}>.d.ts</span>
-					</h1>
+						<div className={cn(sCol2)}>
+							{theNick}
+							{theMessage}
+						</div>
+					</>
+				)}
+				{isPhone && (
+					<>
+						<header className={cn(sHeader)}>
+							{thePhoto}
+							{theNick}
+						</header>
 
-					<div className={cn(sMessage)}>
-						<p>
-							In the dynamic realm of web development, I stand as a seasoned Senior Frontend Developer with a rich
-							tapestry of 6 years of experience. My journey has cultivated a vibrant and extensive tech stack, a
-							versatile toolkit capable of crafting any technical solution that the digital landscape demands.{' '}
-						</p>
-						<p>
-							With mastery in technologies like React, JavaScript, HTML, and CSS, I am your steadfast partner in
-							translating ideas into pixel-perfect, user-centric web applications. My technical prowess is more than a
-							skill; it&apos;s an art form honed through years of immersive learning and dedicated practice.{' '}
-						</p>
-						<p>
-							But my journey doesn&apos;t stop at code. I&apos;ve walked the path of leadership, serving as both a Team
-							Lead and a Frontend CTO. These roles have sculpted me into a strategic thinker, capable of orchestrating
-							and inspiring teams to craft elegant, scalable, and business-aligned frontend solutions. As a
-							collaborator, I&apos;ve cultivated unity and shared vision, propelling projects to new heights.{' '}
-						</p>
-						<p>
-							I stand ready to embark on a new adventure with your organization, driven by the passion to harness
-							technology&apos;s power for innovation and excellence. Together, we will weave compelling digital
-							experiences, transforming challenges into opportunities on this ever-evolving frontier.{' '}
-						</p>
-					</div>
-				</div>
+						{theMessage}
+					</>
+				)}
 			</div>
 
 			<div className={cn(sInfoGraphics, sLayout)}>
-				<PcCol isLaptop={isLaptop}>
+				<PcCol isLaptop={isLaptop} isDesktop={isDesktop}>
 					<div className={cn(sPart)}>
 						<h2 className={cn(sTitle)}>Education</h2>
 
@@ -122,7 +153,7 @@ export const CVGeneralInfo: React.FC<CVGeneralInfoProps> = ({ className = '' }) 
 					</div>
 				</PcCol>
 
-				<PcCol isLaptop={isLaptop}>
+				<PcCol isLaptop={isLaptop} isDesktop={isDesktop}>
 					<div className={cn(sPart)}>
 						<h2 className={cn(sTitle)}>Interest</h2>
 
@@ -151,8 +182,9 @@ export const CVGeneralInfo: React.FC<CVGeneralInfoProps> = ({ className = '' }) 
 
 interface PcColProps extends React.PropsWithChildren {
 	isLaptop: boolean;
+	isDesktop: boolean;
 }
 
-const PcCol: React.FC<PcColProps> = ({ isLaptop, children }) => {
-	return isLaptop ? children : <div className={cn(sPcCol)}>{children}</div>;
+const PcCol: React.FC<PcColProps> = ({ isLaptop, isDesktop, children }) => {
+	return isLaptop || !isDesktop ? children : <div className={cn(sPcCol)}>{children}</div>;
 };

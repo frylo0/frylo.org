@@ -6,7 +6,13 @@ import { fontStyles, fontWeight } from '@/styles/vars/fontStyles.css';
 
 export const laptop = media.widthBetween(breakpoints.desktop.minWidth, 1600);
 
-export const sCVExperience = style({});
+export const sCVExperience = style({
+	'@media': {
+		[media.device.phone]: {
+			display: 'none',
+		},
+	},
+});
 
 export const sTitle = style({
 	...fontStyles.head,

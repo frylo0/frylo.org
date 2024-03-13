@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-import { colors } from '@/styles/bundle.css';
+import { colors, media } from '@/styles/bundle.css';
 import { fontWeight } from '@/styles/vars/fontStyles.css';
 
 export const sLanguage = style({
@@ -30,6 +30,12 @@ export const sChartPercent = style({
 	fill: colors.secondary,
 	fontSize: 16,
 	fontWeight: fontWeight.semiBold,
+
+	'@media': {
+		[media.device.phone]: {
+			fontSize: 14,
+		},
+	},
 });
 
 export const sLanguageName = style({
@@ -37,6 +43,12 @@ export const sLanguageName = style({
 	fontWeight: fontWeight.semiBold,
 	fontSize: 16,
 	marginBlockStart: 10,
+
+	'@media': {
+		[media.device.phone]: {
+			fontSize: 14,
+		},
+	},
 });
 
 export const sLanguageLevel = style({

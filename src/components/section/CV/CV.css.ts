@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-import { colors } from '@/styles/bundle.css';
+import { colors, media } from '@/styles/bundle.css';
 import { laptop } from './CVGeneralInfo/CVGeneralInfo.css';
 
 export const sSection = style({
@@ -13,6 +13,15 @@ export const sSection = style({
 	boxShadow: '0 34px 100px #00000010',
 	position: 'relative',
 	overflow: 'hidden',
+
+	'@media': {
+		[media.device.phone]: {
+			padding: 20,
+			paddingBlockEnd: 51,
+			gap: 70,
+			borderRadius: 59,
+		},
+	},
 });
 
 export const sContent = style({
@@ -31,6 +40,12 @@ export const sContent = style({
 export const sRocky = style({
 	position: 'absolute',
 	height: 'auto',
+
+	'@media': {
+		[media.device.phone]: {
+			display: 'none',
+		},
+	},
 });
 
 export const sRocky1 = style({
