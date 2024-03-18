@@ -40,12 +40,6 @@ export const sContent = style({
 export const sRocky = style({
 	position: 'absolute',
 	height: 'auto',
-
-	'@media': {
-		[media.device.phone]: {
-			display: 'none',
-		},
-	},
 });
 
 export const sRocky1 = style({
@@ -53,16 +47,37 @@ export const sRocky1 = style({
 	top: 400,
 	transform: 'rotate(22deg)',
 	width: 977,
+
+	'@media': {
+		[media.device.phone]: {
+			left: -650,
+			top: 364,
+		},
+	},
 });
 export const sRocky2 = style({
 	width: 1000,
 	transform: 'rotate(-10deg)',
 	right: -32,
 	top: 100,
+
+	'@media': {
+		[media.device.phone]: {
+			right: -462,
+			top: 1252,
+		},
+	},
 });
 export const sRocky3 = style({
 	width: 1248,
 	transform: 'rotate(22deg)',
 	right: -150,
 	bottom: -315,
+
+	'@media': {
+		[media.device.phone]: {
+			bottom: -313,
+			left: -612,
+		},
+	},
 });
