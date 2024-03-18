@@ -7,8 +7,12 @@ import { Preview } from '@/components/section/Preview/Preview';
 import { sPage } from './page.css';
 
 export const metadata: Metadata = {
-	title: `TypeScript starter for Next.js`,
-	description: `TypeScript starter for Next.js that includes all you need to build amazing apps`,
+	title: `frylo.d.ts — Frontend Developer`,
+	description:
+		`World is moving, you inhale fresh forest air...` +
+		` You feel free, nothing can throw you off balance.` +
+		` It is because you know, there is hard skilled Frontend Developer developing your website on another side of the Earth.` +
+		` Welcome to my (frylo.d.ts) website and investigate all power of web technologies.`,
 };
 
 export default function Page() {
