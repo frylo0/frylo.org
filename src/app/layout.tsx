@@ -17,6 +17,16 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html className="html" lang="en" suppressHydrationWarning>
+			<head>
+				<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=1" />
+				<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=1" />
+				<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=1" />
+				<link rel="manifest" href="/site.webmanifest?v=1" />
+				<link rel="mask-icon" href="/safari-pinned-tab.svg?v=1" color="#0d79c2" />
+				<link rel="shortcut icon" href="/favicon.ico?v=1" />
+				<meta name="msapplication-TileColor" content="#fefefe" />
+				<meta name="theme-color" content="#ffffff" />
+			</head>
 			<body>
 				<WithClientAuth>
 					<IsDevelopment {...breakpoints.tablet} />
