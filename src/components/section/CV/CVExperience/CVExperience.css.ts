@@ -18,6 +18,14 @@ export const sGraph = style({
 	flexDirection: 'row',
 	gap: 7,
 	paddingBlockEnd: 20 + 18,
+
+	'@media': {
+		[media.device.phone]: {
+			flexDirection: 'column-reverse',
+			height: `90vh`,
+			paddingBlockEnd: 0,
+		},
+	},
 });
 
 export const sCompany = style({
@@ -35,6 +43,15 @@ export const sCompany = style({
 				'logo description'
 				'meta description'`,
 			gap: `20px 40px`,
+		},
+		[media.device.phone]: {
+			gridTemplateRows: `auto auto`,
+			gridTemplateColumns: `81px auto`,
+			gridTemplateAreas: `
+				'logo        mainInfo'
+				'secInfo     secInfo'
+				'description description'`,
+			gap: `30px 20px`,
 		},
 	},
 });
@@ -62,6 +79,11 @@ export const sLogo = style({
 			width: 70,
 			height: 70,
 		},
+		[media.device.phone]: {
+			gridArea: 'logo',
+			width: 81,
+			height: 81,
+		},
 	},
 });
 
@@ -74,12 +96,30 @@ export const sInfo = style({
 		[laptop]: {
 			gridArea: 'meta',
 		},
+		[media.device.phone]: {
+			gridArea: `secInfo`,
+		},
+	},
+});
+
+export const sMainFeatures = style({
+	'@media': {
+		[media.device.phone]: {
+			gridArea: 'mainInfo',
+			display: 'flex',
+			flexDirection: 'column',
+			gap: 5,
+			justifyContent: 'center',
+		},
 	},
 });
 
 export const sDescription = style({
 	'@media': {
 		[laptop]: {
+			gridArea: 'description',
+		},
+		[media.device.phone]: {
 			gridArea: 'description',
 		},
 	},
@@ -94,7 +134,6 @@ globalStyle(`${sDescription} p`, {
 export const sLine = style({
 	height: 33,
 	position: 'relative',
-	width: 200,
 	background: `${colors.primaryLighter}a0`,
 	transition: 'background-color 0.5s ease',
 	cursor: 'pointer',
@@ -114,6 +153,23 @@ export const sLine = style({
 	':last-child': {
 		borderRadius: '0 100px 100px 0',
 	},
+
+	'@media': {
+		[media.device.desktop]: {
+			minWidth: 75,
+		},
+		[media.device.phone]: {
+			width: 20,
+			minHeight: 60,
+
+			':first-child': {
+				borderRadius: '0 0 100px 100px',
+			},
+			':last-child': {
+				borderRadius: '100px 100px 0 0',
+			},
+		},
+	},
 });
 
 export const sLineCurrent = style({
@@ -123,20 +179,44 @@ export const sLineCurrent = style({
 export const sDate = style({
 	display: 'flex',
 	flexDirection: 'row',
-	gap: 7,
 	position: 'absolute',
-	bottom: -20,
-	transform: `translateY(100%)`,
+
+	'@media': {
+		[media.device.desktop]: {
+			bottom: -20,
+			transform: `translateY(100%)`,
+			gap: 7,
+		},
+		[media.device.phone]: {
+			transform: `translateX(100%)`,
+			flexDirection: 'column',
+			right: -10,
+		},
+	},
 });
 
 export const sDateStart = style({
-	left: 0,
+	'@media': {
+		[media.device.desktop]: {
+			left: 0,
+		},
+		[media.device.phone]: {
+			bottom: 0,
+		},
+	},
 });
 
 export const sDateStartMerged = style({});
 
 export const sDateEnd = style({
-	right: 0,
+	'@media': {
+		[media.device.desktop]: {
+			right: 0,
+		},
+		[media.device.phone]: {
+			top: 0,
+		},
+	},
 });
 
 export const sNow = style({});
@@ -147,13 +227,52 @@ export const sDateEndMerged = style({
 
 export const sYear = style({
 	fontWeight: fontWeight.regular,
-	fontSize: 16,
+	fontSize: 'inherit',
 });
 
 export const sMonth = style({});
 
 export const sDuration = style({
 	color: colors.body,
+
+	'@media': {
+		[media.device.phone]: {
+			writingMode: 'vertical-rl',
+		},
+	},
+});
+
+export const sLineLogo = style({
+	position: 'absolute',
+	width: 50,
+	height: 50,
+	right: `calc(-50vw + 20px)`,
+
+	'::after': {
+		content: '',
+		position: 'absolute',
+		top: 0,
+		left: 0,
+		right: 0,
+		bottom: 0,
+		backgroundColor: colors.primary,
+		mixBlendMode: 'hard-light',
+	},
+	'::before': {
+		content: '',
+		position: 'absolute',
+		top: `calc(50% - 1px)`,
+		left: `calc(-50vw + 20px + 20px + 10px + 20px + 10px)`,
+		width: `calc(50vw - 110px)`,
+		height: 2,
+		backgroundColor: colors.body,
+		borderRadius: 10,
+	},
+});
+
+export const sLineImg = style({
+	width: '100%',
+	height: '100%',
 });
 
 // Company Info
@@ -167,11 +286,10 @@ export const sFeatures = style({
 	display: 'flex',
 	flexDirection: 'column',
 	gap: 10,
-	width: 345,
 
 	'@media': {
-		[laptop]: {
-			width: 'auto',
+		[media.device.desktop]: {
+			width: 345,
 		},
 	},
 });
@@ -199,9 +317,22 @@ export const sFeature = style({
 	alignItems: 'center',
 	fontWeight: fontWeight.regular,
 	fontSize: 14,
+
+	'@media': {
+		[media.device.phone]: {
+			gap: 10,
+		},
+	},
 });
 
 export const sIcon = style({
 	width: 20,
 	height: 20,
+
+	'@media': {
+		[media.device.phone]: {
+			width: 15,
+			height: 15,
+		},
+	},
 });

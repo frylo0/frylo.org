@@ -1,5 +1,6 @@
 import cn from 'clsx';
 
+import { useLayout } from '@/components/common/Layout/Layout';
 import {
 	sChartBody,
 	sChartOutline,
@@ -18,9 +19,13 @@ interface LanguageProps extends React.PropsWithChildren {
 }
 
 export const Language: React.FC<LanguageProps> = ({ className, name, level, percent }) => {
+	const device = useLayout();
+
+	const pieChartSize = device?.name === 'phone' ? 81 : 90;
+
 	return (
 		<div className={cn(sLanguage, className)}>
-			<PieChart className={cn(sLanguageChart)} percent={percent} />
+			<PieChart className={cn(sLanguageChart)} percent={percent} size={pieChartSize} />
 			<div className={cn(sLanguageName)}>{name}</div>
 			<div className={cn(sLanguageLevel)}>{level}</div>
 		</div>
@@ -32,10 +37,10 @@ export const Language: React.FC<LanguageProps> = ({ className, name, level, perc
 interface PieChartProps {
 	className?: string;
 	percent: number;
+	size?: number;
 }
 
-const PieChart: React.FC<PieChartProps> = ({ className, percent }) => {
-	const size = 90;
+const PieChart: React.FC<PieChartProps> = ({ className, percent, size = 90 }) => {
 	const strokeWidth = 3;
 
 	const radius = (size - strokeWidth) / 2;

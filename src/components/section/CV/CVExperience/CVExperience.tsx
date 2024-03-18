@@ -9,6 +9,7 @@ import PNG_Code from '@/assets/raster/tech.png';
 import PNG_Time from '@/assets/raster/timing.png';
 import PNG_Website from '@/assets/raster/website.png';
 import PNG_Job from '@/assets/raster/work.png';
+import { useLayout } from '@/components/common/Layout/Layout';
 import { experience, getExperiencePercent, TExperience } from '@/constants/work-experience';
 import {
 	sCompany,
@@ -28,7 +29,10 @@ import {
 	sJobTitle,
 	sLine,
 	sLineCurrent,
+	sLineImg,
+	sLineLogo,
 	sLogo,
+	sMainFeatures,
 	sMonth,
 	sName,
 	sNow,
@@ -46,16 +50,34 @@ export interface CVExperienceProps {
 }
 
 export const CVExperience: React.FC<CVExperienceProps> = ({ className = '' }) => {
+	const device = useLayout();
+	const isPhone = device?.name === 'phone';
+
 	const [current, setCurrent] = useState(experience.length - 1);
 
 	const selected = experience[current];
+	const graphDirection: LineProps['direction'] = device?.name === 'phone' ? 'vertical' : 'horizontal';
+	const selectedLogo = isPhone ? selected.company.logoCentred : selected.company.logo;
 
 	const selectedBegin = getDate(selected.dateBegin);
 	const selectedEnd = getDate(selected.dateEnd);
 
+	const elCompany = useRef<HTMLDivElement | null>(null);
+
 	const handleLineSelect = (index: number) => () => {
 		setCurrent(index);
+		elCompany.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 	};
+
+	const theWebsite = (
+		<Feature className={cn(sWebsite)} icon={PNG_Website}>
+			<Link href={selected.company.url} target="_blank">
+				{selected.company.website}
+			</Link>
+		</Feature>
+	);
+
+	const theName = <div className={cn(sName)}>{selected.company.name}</div>;
 
 	return (
 		<div className={cn(sCVExperience, className)}>
@@ -70,22 +92,25 @@ export const CVExperience: React.FC<CVExperienceProps> = ({ className = '' }) =>
 						key={i}
 						isCurrent={i === current}
 						onSelect={handleLineSelect(i)}
+						direction={graphDirection}
 					/>
 				))}
 			</div>
 
-			<div className={cn(sCompany)}>
+			<div className={cn(sCompany)} ref={elCompany}>
 				<div className={cn(sLogo)}>
-					<Image src={selected.company.logo} alt={selected.company.name} layout="fill" />
+					<Image src={selectedLogo} alt={selected.company.name} layout="fill" />
 				</div>
+				{isPhone && (
+					<div className={cn(sMainFeatures)}>
+						{theName}
+						{theWebsite}
+					</div>
+				)}
 				<div className={cn(sInfo)}>
-					<div className={cn(sName)}>{selected.company.name}</div>
+					{!isPhone && theName}
 					<div className={cn(sFeatures)}>
-						<Feature className={cn(sWebsite)} icon={PNG_Website}>
-							<Link href={selected.company.url} target="_blank">
-								{selected.company.website}
-							</Link>
-						</Feature>
+						{!isPhone && theWebsite}
 						<Feature icon={PNG_Job} className={cn(sJobTitle)}>
 							{selected.jobTitle}
 						</Feature>
@@ -128,10 +153,14 @@ interface LineProps extends TExperience {
 	nextDate: TExperience['dateBegin'] | null;
 	isCurrent: boolean;
 	onSelect: () => void;
+	direction: 'horizontal' | 'vertical';
 }
 
-const Line: React.FC<LineProps> = ({ className, isCurrent, onSelect, prevDate, nextDate, ...item }) => {
+const Line: React.FC<LineProps> = ({ className, isCurrent, onSelect, prevDate, nextDate, direction, ...item }) => {
 	const { dateBegin, dateEnd } = item;
+
+	const isHorizontal = direction === 'horizontal';
+	const isVertical = direction === 'vertical';
 
 	const begin = getDate(dateBegin);
 	const end = getDate(dateEnd);
@@ -144,11 +173,17 @@ const Line: React.FC<LineProps> = ({ className, isCurrent, onSelect, prevDate, n
 	const yearBeginRef = useRef<HTMLSpanElement | null>(null);
 	const yearBeginRect = yearBeginRef.current?.getBoundingClientRect();
 
+	const cssSizeProp = isHorizontal ? 'width' : 'height';
 	const rootStyle: CSSProperties = {
-		width: `calc(${percent} * 100%)`,
+		[cssSizeProp]: `calc(${percent} * 100%)`,
 	};
+
+	const cssMarginProp = isHorizontal ? 'marginInlineStart' : 'marginBlockEnd';
+	const cssMarginValue = isHorizontal
+		? `calc(-${yearBeginRect?.width}px - 7px)`
+		: `calc(-${yearBeginRect?.height}px - 3px)`;
 	const dateStartStyle: CSSProperties = {
-		marginInlineStart: isBeginMerged ? `calc(-${yearBeginRect?.width}px - 7px)` : '0',
+		[cssMarginProp]: isBeginMerged ? cssMarginValue : '0',
 	};
 
 	let diffYear = +(end?.year || +new Date().getFullYear()) - +(begin?.year || 0);
@@ -161,6 +196,12 @@ const Line: React.FC<LineProps> = ({ className, isCurrent, onSelect, prevDate, n
 
 	return (
 		<div className={cn(sLine, isCurrent && sLineCurrent, className)} onClick={onSelect} style={rootStyle}>
+			{isVertical && (
+				<div className={cn(sLineLogo)}>
+					<Image className={cn(sLineImg)} src={item.company.logoCentred} alt={item.company.name} />
+				</div>
+			)}
+
 			<div className={cn(sDate, sDateStart, isBeginMerged && sDateStartMerged)} style={dateStartStyle}>
 				<span className={cn(sYear)} ref={yearBeginRef}>
 					{begin?.year}

@@ -1,5 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
+import { media } from '@/styles/bundle.css';
 import { fontWeight } from '@/styles/vars/fontStyles.css';
 
 export const sInterest = style({
@@ -14,6 +15,13 @@ export const sInterestIcon = style({
 	height: 70,
 	opacity: '0.7',
 	fontWeight: fontWeight.regular,
+
+	'@media': {
+		[media.device.phone]: {
+			width: 55,
+			height: 55,
+		},
+	},
 });
 
 export const sInterestName = style({});
