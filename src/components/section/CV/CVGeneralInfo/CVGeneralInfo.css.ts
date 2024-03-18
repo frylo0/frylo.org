@@ -169,10 +169,10 @@ export const sLanguageItems = style({
 	display: 'flex',
 	flexDirection: 'row',
 	gap: 40,
-	flexWrap: `wrap`,
 
 	'@media': {
 		[media.device.phone]: {
+			flexWrap: `wrap`,
 			justifyContent: 'space-between',
 			gap: 30,
 		},
@@ -183,10 +183,10 @@ export const sInterestItems = style({
 	display: 'flex',
 	flexDirection: 'row',
 	gap: 40,
-	flexWrap: `wrap`,
 
 	'@media': {
 		[media.device.phone]: {
+			flexWrap: `wrap`,
 			justifyContent: 'space-between',
 			gap: 20,
 		},
