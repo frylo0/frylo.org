@@ -32,6 +32,7 @@ import {
 	sLineImg,
 	sLineLogo,
 	sLogo,
+	sMainFeatures,
 	sMonth,
 	sName,
 	sNow,
@@ -50,18 +51,33 @@ export interface CVExperienceProps {
 
 export const CVExperience: React.FC<CVExperienceProps> = ({ className = '' }) => {
 	const device = useLayout();
+	const isPhone = device?.name === 'phone';
 
 	const [current, setCurrent] = useState(experience.length - 1);
 
 	const selected = experience[current];
 	const graphDirection: LineProps['direction'] = device?.name === 'phone' ? 'vertical' : 'horizontal';
+	const selectedLogo = isPhone ? selected.company.logoCentred : selected.company.logo;
 
 	const selectedBegin = getDate(selected.dateBegin);
 	const selectedEnd = getDate(selected.dateEnd);
 
+	const elCompany = useRef<HTMLDivElement | null>(null);
+
 	const handleLineSelect = (index: number) => () => {
 		setCurrent(index);
+		elCompany.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 	};
+
+	const theWebsite = (
+		<Feature className={cn(sWebsite)} icon={PNG_Website}>
+			<Link href={selected.company.url} target="_blank">
+				{selected.company.website}
+			</Link>
+		</Feature>
+	);
+
+	const theName = <div className={cn(sName)}>{selected.company.name}</div>;
 
 	return (
 		<div className={cn(sCVExperience, className)}>
@@ -81,18 +97,20 @@ export const CVExperience: React.FC<CVExperienceProps> = ({ className = '' }) =>
 				))}
 			</div>
 
-			<div className={cn(sCompany)}>
+			<div className={cn(sCompany)} ref={elCompany}>
 				<div className={cn(sLogo)}>
-					<Image src={selected.company.logo} alt={selected.company.name} layout="fill" />
+					<Image src={selectedLogo} alt={selected.company.name} layout="fill" />
 				</div>
+				{isPhone && (
+					<div className={cn(sMainFeatures)}>
+						{theName}
+						{theWebsite}
+					</div>
+				)}
 				<div className={cn(sInfo)}>
-					<div className={cn(sName)}>{selected.company.name}</div>
+					{!isPhone && theName}
 					<div className={cn(sFeatures)}>
-						<Feature className={cn(sWebsite)} icon={PNG_Website}>
-							<Link href={selected.company.url} target="_blank">
-								{selected.company.website}
-							</Link>
-						</Feature>
+						{!isPhone && theWebsite}
 						<Feature icon={PNG_Job} className={cn(sJobTitle)}>
 							{selected.jobTitle}
 						</Feature>

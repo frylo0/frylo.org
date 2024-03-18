@@ -23,6 +23,7 @@ export const sGraph = style({
 		[media.device.phone]: {
 			flexDirection: 'column-reverse',
 			height: `90vh`,
+			paddingBlockEnd: 0,
 		},
 	},
 });
@@ -44,7 +45,13 @@ export const sCompany = style({
 			gap: `20px 40px`,
 		},
 		[media.device.phone]: {
-			gridTemplateColumns: `auto`,
+			gridTemplateRows: `auto auto`,
+			gridTemplateColumns: `81px auto`,
+			gridTemplateAreas: `
+				'logo        mainInfo'
+				'secInfo     secInfo'
+				'description description'`,
+			gap: `30px 20px`,
 		},
 	},
 });
@@ -72,6 +79,11 @@ export const sLogo = style({
 			width: 70,
 			height: 70,
 		},
+		[media.device.phone]: {
+			gridArea: 'logo',
+			width: 81,
+			height: 81,
+		},
 	},
 });
 
@@ -84,12 +96,30 @@ export const sInfo = style({
 		[laptop]: {
 			gridArea: 'meta',
 		},
+		[media.device.phone]: {
+			gridArea: `secInfo`,
+		},
+	},
+});
+
+export const sMainFeatures = style({
+	'@media': {
+		[media.device.phone]: {
+			gridArea: 'mainInfo',
+			display: 'flex',
+			flexDirection: 'column',
+			gap: 5,
+			justifyContent: 'center',
+		},
 	},
 });
 
 export const sDescription = style({
 	'@media': {
 		[laptop]: {
+			gridArea: 'description',
+		},
+		[media.device.phone]: {
 			gridArea: 'description',
 		},
 	},
@@ -256,11 +286,10 @@ export const sFeatures = style({
 	display: 'flex',
 	flexDirection: 'column',
 	gap: 10,
-	width: 345,
 
 	'@media': {
-		[laptop]: {
-			width: 'auto',
+		[media.device.desktop]: {
+			width: 345,
 		},
 	},
 });
@@ -288,9 +317,22 @@ export const sFeature = style({
 	alignItems: 'center',
 	fontWeight: fontWeight.regular,
 	fontSize: 14,
+
+	'@media': {
+		[media.device.phone]: {
+			gap: 10,
+		},
+	},
 });
 
 export const sIcon = style({
 	width: 20,
 	height: 20,
+
+	'@media': {
+		[media.device.phone]: {
+			width: 15,
+			height: 15,
+		},
+	},
 });
