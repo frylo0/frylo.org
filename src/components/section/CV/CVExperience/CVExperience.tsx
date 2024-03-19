@@ -68,7 +68,7 @@ export const CVExperience: React.FC<CVExperienceProps> = ({ className = '' }) =>
 		setCurrent(index);
 
 		if (isPhone) {
-			elCompany.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+			elCompany.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
 		}
 	};
 
