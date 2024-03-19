@@ -66,7 +66,10 @@ export const CVExperience: React.FC<CVExperienceProps> = ({ className = '' }) =>
 
 	const handleLineSelect = (index: number) => () => {
 		setCurrent(index);
-		elCompany.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+		if (isPhone) {
+			elCompany.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+		}
 	};
 
 	const theWebsite = (
