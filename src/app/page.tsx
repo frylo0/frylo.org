@@ -7,6 +7,7 @@ import { Preview } from '@/components/section/Preview/Preview';
 import { sPage } from './page.css';
 
 export const metadata: Metadata = {
+	metadataBase: new URL('https://frylo.org'),
 	title: `frylo.d.ts — Frontend Developer`,
 	description:
 		`World is moving, you inhale fresh forest air...` +
