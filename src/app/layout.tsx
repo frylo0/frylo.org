@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import '@/styles/global-in-css.css';
 import '@/styles/global-in-js.css';
 
+import { GoogleTagManager } from '@next/third-parties/google';
 import Head from 'next/head';
 
 import { Footer } from '@/components/block/Footer/Footer';
@@ -33,22 +34,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<link rel="shortcut icon" href="/favicon.ico?v=1" />
 				<meta name="msapplication-TileColor" content="#fefefe" />
 				<meta name="theme-color" content="#ffffff" />
-
-				{/* Google Tag Manager */}
-				<script>
-					{`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
-					var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;
-					j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(
-					window,document,'script','dataLayer','GTM-WWGV4J5C');`}
-				</script>
 			</Head>
 
 			<body>
-				{/* Google Tag Manager - No script */}
-				<noscript>
-					{`<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WWGV4J5C"
-					height="0" width="0" style="display:none;visibility:hidden"></iframe>`}
-				</noscript>
+				<GoogleTagManager gtmId="GTM-WWGV4J5C" />
 
 				<WithClientAuth>
 					<IsDevelopment {...breakpoints.tablet} />

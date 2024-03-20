@@ -176,6 +176,9 @@ export const sLanguageItems = style({
 			justifyContent: 'space-between',
 			gap: 30,
 		},
+		[media.widthBetween(0, 405)]: {
+			justifyContent: 'flex-start',
+		},
 	},
 });
 

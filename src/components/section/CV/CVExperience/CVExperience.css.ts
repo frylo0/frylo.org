@@ -87,6 +87,12 @@ export const sLogo = style({
 	},
 });
 
+export const sLogoImg = style({
+	objectFit: 'fill',
+	width: '100%',
+	height: '100%',
+});
+
 export const sInfo = style({
 	display: 'flex',
 	flexDirection: 'column',
