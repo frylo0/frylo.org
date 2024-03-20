@@ -37,7 +37,6 @@ export const CVExperience: React.FC<CVExperienceProps> = ({ className = '' }) =>
 
 	const [current, setCurrent] = useState(experience.length - 1);
 
-	const selected = experience[current];
 	const graphDirection: LineProps['direction'] = device?.name === 'phone' ? 'vertical' : 'horizontal';
 
 	const elCompany = useRef<HTMLDivElement | null>(null);
@@ -68,7 +67,15 @@ export const CVExperience: React.FC<CVExperienceProps> = ({ className = '' }) =>
 				))}
 			</div>
 
-			<CVCompany ref={elCompany} isPhone={isPhone} selected={selected} />
+			{experience.map((exp, i) => (
+				<CVCompany
+					ref={i === current ? elCompany : null}
+					isPhone={isPhone}
+					isSelected={i === current}
+					exp={exp}
+					key={i}
+				/>
+			))}
 		</div>
 	);
 };

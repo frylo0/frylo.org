@@ -14,6 +14,7 @@ import {
 	sDescription,
 	sFeature,
 	sFeatures,
+	sHidden,
 	sIcon,
 	sInfo,
 	sJobTitle,
@@ -31,65 +32,67 @@ import {
 export interface CVCompanyProps {
 	className?: string;
 	isPhone: boolean;
-	selected: TExperience;
+	isSelected: boolean;
+	exp: TExperience;
 }
 
-export const CVCompany = forwardRef<HTMLDivElement, CVCompanyProps>(({ className = '', isPhone, selected }, ref) => {
-	const selectedLogo = isPhone ? selected.company.logoCentred : selected.company.logo;
+export const CVCompany = forwardRef<HTMLDivElement, CVCompanyProps>(
+	({ className = '', isPhone, isSelected, exp }, ref) => {
+		const expLogo = isPhone ? exp.company.logoCentred : exp.company.logo;
 
-	const selectedBegin = getDate(selected.dateBegin);
-	const selectedEnd = getDate(selected.dateEnd);
+		const expBegin = getDate(exp.dateBegin);
+		const expEnd = getDate(exp.dateEnd);
 
-	const theWebsite = (
-		<Feature className={cn(sWebsite)} icon={PNG_Website}>
-			<Link href={selected.company.url} target="_blank">
-				{selected.company.website}
-			</Link>
-		</Feature>
-	);
+		const theWebsite = (
+			<Feature className={cn(sWebsite)} icon={PNG_Website}>
+				<Link href={exp.company.url} target="_blank">
+					{exp.company.website}
+				</Link>
+			</Feature>
+		);
 
-	const theName = <div className={cn(sName)}>{selected.company.name}</div>;
+		const theName = <div className={cn(sName)}>{exp.company.name}</div>;
 
-	return (
-		<div className={cn(sCVCompany, className)} ref={ref}>
-			<div className={cn(sLogo)}>
-				<Image className={cn(sLogoImg)} src={selectedLogo} alt={selected.company.name} />
-			</div>
-			{isPhone && (
-				<div className={cn(sMainFeatures)}>
-					{theName}
-					{theWebsite}
+		return (
+			<div className={cn(sCVCompany, !isSelected && sHidden, className)} ref={ref}>
+				<div className={cn(sLogo)}>
+					<Image className={cn(sLogoImg)} src={expLogo} alt={exp.company.name} />
 				</div>
-			)}
-			<div className={cn(sInfo)}>
-				{!isPhone && theName}
-				<div className={cn(sFeatures)}>
-					{!isPhone && theWebsite}
-					<Feature icon={PNG_Job} className={cn(sJobTitle)}>
-						{selected.jobTitle}
-					</Feature>
-					<Feature icon={PNG_Time} className={cn(sTiming)}>
-						{selectedBegin?.year}.{selectedBegin?.month} —{' '}
-						{selectedEnd ? `${selectedEnd.year}.${selectedEnd.month}` : 'Now'}
-					</Feature>
-					<Feature icon={PNG_Code} className={cn(sTechStack)}>
-						<div className={cn(sTechItems)}>
-							{selected.techStack.map((tech, i) => (
-								<Fragment key={i}>
-									{i > 0 && ', '}
-									<Link className={cn(sTech)} href={tech.url}>
-										{tech.name}
-									</Link>
-								</Fragment>
-							))}
-						</div>
-					</Feature>
+				{isPhone && (
+					<div className={cn(sMainFeatures)}>
+						{theName}
+						{theWebsite}
+					</div>
+				)}
+				<div className={cn(sInfo)}>
+					{!isPhone && theName}
+					<div className={cn(sFeatures)}>
+						{!isPhone && theWebsite}
+						<Feature icon={PNG_Job} className={cn(sJobTitle)}>
+							{exp.jobTitle}
+						</Feature>
+						<Feature icon={PNG_Time} className={cn(sTiming)}>
+							{expBegin?.year}.{expBegin?.month} — {expEnd ? `${expEnd.year}.${expEnd.month}` : 'Now'}
+						</Feature>
+						<Feature icon={PNG_Code} className={cn(sTechStack)}>
+							<div className={cn(sTechItems)}>
+								{exp.techStack.map((tech, i) => (
+									<Fragment key={i}>
+										{i > 0 && ', '}
+										<Link className={cn(sTech)} href={tech.url}>
+											{tech.name}
+										</Link>
+									</Fragment>
+								))}
+							</div>
+						</Feature>
+					</div>
 				</div>
+				<div className={cn(sDescription)}>{exp.description}</div>
 			</div>
-			<div className={cn(sDescription)}>{selected.description}</div>
-		</div>
-	);
-});
+		);
+	}
+);
 
 CVCompany.displayName = 'CVCompany';
 

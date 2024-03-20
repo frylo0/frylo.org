@@ -34,6 +34,10 @@ export const sCVCompany = style({
 	},
 });
 
+export const sHidden = style({
+	display: 'none',
+});
+
 export const sLogo = style({
 	position: 'relative',
 	width: 148,
