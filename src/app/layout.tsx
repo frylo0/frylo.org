@@ -3,7 +3,7 @@ import { Metadata } from 'next';
 import '@/styles/global-in-css.css';
 import '@/styles/global-in-js.css';
 
-import { GoogleTagManager } from '@next/third-parties/google';
+import { GoogleAnalytics } from '@next/third-parties/google';
 import Head from 'next/head';
 
 import { Footer } from '@/components/block/Footer/Footer';
@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			</Head>
 
 			<body>
-				<GoogleTagManager gtmId="GTM-WWGV4J5C" />
+				<GoogleAnalytics gaId="G-THYZN6RKH9" />
 
 				<WithClientAuth>
 					<IsDevelopment {...breakpoints.tablet} />
