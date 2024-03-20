@@ -27,6 +27,11 @@ globalStyle('.html body', {
 	},
 });
 
+globalStyle('::selection', {
+	background: `${colors.primaryDarker}b0`,
+	color: colors.bodyLighter,
+});
+
 globalStyle('*', {
 	boxSizing: 'border-box',
 });
