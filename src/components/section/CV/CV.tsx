@@ -31,6 +31,6 @@ interface RockyProps {
 
 const Rocky: React.FC<RockyProps> = ({ className }) => {
 	return (
-		<Image className={cn(sRocky, className)} src={PNG_Rocky} width={1248} height={554} alt="Blue Transparent Rock" />
+		<Image className={cn(sRocky, className)} src={PNG_Rocky} width={1248} alt="Blue Transparent Rock" priority={true} />
 	);
 };

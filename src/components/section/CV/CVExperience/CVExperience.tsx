@@ -3,7 +3,7 @@
 import cn from 'clsx';
 import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
-import { CSSProperties, useRef, useState } from 'react';
+import { CSSProperties, Fragment, useRef, useState } from 'react';
 
 import PNG_Code from '@/assets/raster/tech.png';
 import PNG_Time from '@/assets/raster/timing.png';
@@ -32,6 +32,7 @@ import {
 	sLineImg,
 	sLineLogo,
 	sLogo,
+	sLogoImg,
 	sMainFeatures,
 	sMonth,
 	sName,
@@ -102,7 +103,7 @@ export const CVExperience: React.FC<CVExperienceProps> = ({ className = '' }) =>
 
 			<div className={cn(sCompany)} ref={elCompany}>
 				<div className={cn(sLogo)}>
-					<Image src={selectedLogo} alt={selected.company.name} layout="fill" />
+					<Image className={cn(sLogoImg)} src={selectedLogo} alt={selected.company.name} />
 				</div>
 				{isPhone && (
 					<div className={cn(sMainFeatures)}>
@@ -124,12 +125,12 @@ export const CVExperience: React.FC<CVExperienceProps> = ({ className = '' }) =>
 						<Feature icon={PNG_Code} className={cn(sTechStack)}>
 							<div className={cn(sTechItems)}>
 								{selected.techStack.map((tech, i) => (
-									<>
+									<Fragment key={i}>
 										{i > 0 && ', '}
-										<Link className={cn(sTech)} href={tech.url} key={i}>
+										<Link className={cn(sTech)} href={tech.url}>
 											{tech.name}
 										</Link>
-									</>
+									</Fragment>
 								))}
 							</div>
 						</Feature>
