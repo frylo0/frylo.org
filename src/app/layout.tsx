@@ -9,6 +9,7 @@ import Head from 'next/head';
 import { Footer } from '@/components/block/Footer/Footer';
 import { Header } from '@/components/block/Header/Header';
 import { IsDevelopment } from '@/components/common/IsDevelopment/IsDevelopment';
+import { YandexMetrika } from '@/components/common/YandexMetrika/YandexMetrika';
 import { breakpoints } from '@/constants/breakpoints';
 import { WithClientAuth } from '@/lib/WithClientAuth';
 
@@ -38,9 +39,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 			<body>
 				<GoogleAnalytics gaId="G-THYZN6RKH9" />
+				<YandexMetrika ymId={96785094} />
 
 				<WithClientAuth>
 					<IsDevelopment {...breakpoints.tablet} />
+
 					<Header />
 					{children}
 					<Footer />
