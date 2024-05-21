@@ -11,11 +11,16 @@ import { Header } from '@/components/block/Header/Header';
 import { IsDevelopment } from '@/components/common/IsDevelopment/IsDevelopment';
 import { YandexMetrika } from '@/components/common/YandexMetrika/YandexMetrika';
 import { breakpoints } from '@/constants/breakpoints';
+import { APP_URL } from '@/constants/project';
 import { WithClientAuth } from '@/lib/WithClientAuth';
 
 export const metadata: Metadata = {
 	title: `TypeScript starter for Next.js`,
 	description: `TypeScript starter for Next.js that includes all you need to build amazing apps`,
+	metadataBase: new URL(APP_URL),
+	alternates: {
+		canonical: './',
+	},
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
