@@ -71,8 +71,49 @@ export const sLine = style({
 	},
 });
 
+export const sLineOutstaff = style({
+	backgroundColor: 'transparent',
+
+	'::before': {
+		content: '',
+		position: 'absolute',
+		top: 0,
+		left: 0,
+		right: 0,
+		bottom: 0,
+		backgroundImage: `linear-gradient(to bottom, ${colors.primaryDarker}ff, ${colors.primaryDarker}00)`,
+		transition: 'opacity 0.5s ease',
+		opacity: 0.3,
+	},
+
+	':hover': {
+		backgroundColor: 'transparent',
+	},
+
+	'@media': {
+		[media.device.phone]: {
+			'::before': {
+				backgroundImage: `linear-gradient(266deg, ${colors.primaryDarker}ff, ${colors.primaryDarker}00)`,
+			},
+		},
+	},
+
+	selectors: {
+		'&:hover::before': {
+			opacity: 0.6,
+		},
+	},
+});
+
 export const sLineCurrent = style({
 	backgroundColor: `${colors.primaryDarker}b0`,
+
+	selectors: {
+		[`${sLineOutstaff}&`]: {
+			backgroundColor: `${colors.primaryDarker}b0`,
+			opacity: 1,
+		},
+	},
 });
 
 export const sDate = style({

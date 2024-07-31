@@ -42,6 +42,7 @@ export type TExperience = {
 	};
 
 	jobTitle: string;
+	isOutstaff: boolean;
 
 	dateBegin: Date;
 	dateEnd?: Date;
@@ -61,9 +62,10 @@ const Genesis: TExperience = {
 	},
 
 	jobTitle: 'WordPress developer / System Administrator',
+	isOutstaff: false,
 
 	dateBegin: new Date('2017-06-01'),
-	dateEnd: new Date('2018-04-01'),
+	dateEnd: new Date('2018-09-01'),
 
 	techStack: [WordPress, HTML, CSS, jQuery],
 
@@ -99,8 +101,9 @@ const RNCB: TExperience = {
 	},
 
 	jobTitle: 'Middle Full-stack Developer',
+	isOutstaff: false,
 
-	dateBegin: new Date('2018-04-01'),
+	dateBegin: new Date('2018-09-01'),
 	dateEnd: new Date('2020-02-01'),
 
 	techStack: [PHP, Yii2, jQuery, React],
@@ -140,6 +143,7 @@ const Kindda: TExperience = {
 	},
 
 	jobTitle: 'Outstaff Middle Frontend Developer',
+	isOutstaff: true,
 
 	dateBegin: new Date('2020-02-01'),
 	dateEnd: new Date('2020-06-01'),
@@ -172,9 +176,10 @@ const Xsolla: TExperience = {
 	},
 
 	jobTitle: 'Outstaff Senior Frontend Developer',
+	isOutstaff: true,
 
 	dateBegin: new Date('2020-06-01'),
-	dateEnd: new Date('2020-12-01'),
+	dateEnd: new Date('2021-03-01'),
 
 	techStack: [React, TypeScript, ModuleFederation],
 
@@ -210,9 +215,10 @@ const VK: TExperience = {
 	},
 
 	jobTitle: 'Outstaff Senior Frontend Developer',
+	isOutstaff: true,
 
-	dateBegin: new Date('2020-12-01'),
-	dateEnd: new Date('2021-11-01'),
+	dateBegin: new Date('2021-03-01'),
+	dateEnd: new Date('2022-05-01'),
 
 	techStack: [React, Svelte, Backbone, TypeScript],
 
@@ -250,10 +256,11 @@ const JoyDev: TExperience = {
 		url: 'https://joy-dev.ru/',
 	},
 
-	jobTitle: 'CTO Frotend Developer',
+	jobTitle: 'Head of Frontend Department',
+	isOutstaff: false,
 
-	dateBegin: new Date('2021-11-01'),
-	dateEnd: undefined,
+	dateBegin: new Date('2022-05-01'),
+	dateEnd: new Date('2024-07-30'),
 
 	techStack: [React, NextJS, TypeScript, WordPress],
 
