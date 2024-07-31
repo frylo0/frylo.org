@@ -20,6 +20,7 @@ import {
 	sLineCurrent,
 	sLineImg,
 	sLineLogo,
+	sLineOutstaff,
 	sMonth,
 	sNow,
 	sTitle,
@@ -94,6 +95,7 @@ const Line: React.FC<LineProps> = ({ className, isCurrent, onSelect, prevDate, n
 
 	const isHorizontal = direction === 'horizontal';
 	const isVertical = direction === 'vertical';
+	const isOutstaff = item.isOutstaff;
 
 	const begin = getDate(dateBegin);
 	const end = getDate(dateEnd);
@@ -128,7 +130,11 @@ const Line: React.FC<LineProps> = ({ className, isCurrent, onSelect, prevDate, n
 	}
 
 	return (
-		<div className={cn(sLine, isCurrent && sLineCurrent, className)} onClick={onSelect} style={rootStyle}>
+		<div
+			className={cn(sLine, isCurrent && sLineCurrent, isOutstaff && sLineOutstaff, className)}
+			onClick={onSelect}
+			style={rootStyle}
+		>
 			{isVertical && (
 				<div className={cn(sLineLogo)}>
 					<Image className={cn(sLineImg)} src={item.company.logoCentred} alt={item.company.name} />
@@ -151,6 +157,7 @@ const Line: React.FC<LineProps> = ({ className, isCurrent, onSelect, prevDate, n
 					<span className={cn(sNow)}>Now</span>
 				)}
 			</div>
+
 			{isCurrent && (
 				<div className={cn(sDuration)}>
 					{diffYear > 0 && `${diffYear}y`} {diffMonth}m
