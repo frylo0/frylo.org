@@ -11,6 +11,12 @@ export const sCVExperience = style({});
 export const sTitle = style({
 	...fontStyles.head,
 	marginBlockEnd: 40,
+
+	'@media': {
+		[media.device.phone]: {
+			fontWeight: fontWeight.semiBold,
+		},
+	},
 });
 
 export const sGraph = style({

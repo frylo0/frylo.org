@@ -2,7 +2,7 @@
 
 import cn from 'clsx';
 import Image from 'next/image';
-import { CSSProperties, useCallback, useEffect, useMemo, useReducer, useRef, useState } from 'react';
+import { CSSProperties, useCallback, useLayoutEffect, useMemo, useReducer, useRef, useState } from 'react';
 import PNG_TopazPhone from 'src/assets/raster/topaz-mobile.png';
 import PNG_Topaz from 'src/assets/raster/topaz.png';
 import { useEventCallback, useEventListener, useInterval, useEffectOnce as useMount, useUnmount } from 'usehooks-ts';
@@ -158,7 +158,7 @@ export const Asteroid: React.FC<AsteroidProps> = ({
 	useInterval(calcPhoneScroll, isPhone ? 100 : null);
 
 	/** Set pixel coords to ball on load */
-	useEffect(() => {
+	useLayoutEffect(() => {
 		if (!device) return;
 		if (!isFirstLoad) return;
 		if (!ballElRef.current) return;

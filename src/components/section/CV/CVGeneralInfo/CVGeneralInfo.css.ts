@@ -115,6 +115,7 @@ export const sNick = style({
 	'@media': {
 		[media.device.phone]: {
 			fontSize: dynit(375, 36, breakpoints.phone.maxWidth, 46),
+			fontWeight: fontWeight.semiBold,
 		},
 	},
 });
@@ -177,7 +178,7 @@ export const sLanguageItems = style({
 			gap: 30,
 		},
 		[media.widthBetween(0, 405)]: {
-			justifyContent: 'flex-start',
+			gap: 20,
 		},
 	},
 });

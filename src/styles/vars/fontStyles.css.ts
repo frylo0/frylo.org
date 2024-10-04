@@ -37,7 +37,7 @@ export const fontStyles = {
 	headMobile: {
 		fontFamily: fonts.jost,
 		fontSize: 24,
-		fontWeight: fontWeight.bold,
+		fontWeight: fontWeight.semiBold,
 		lineHeight: '35px',
 	},
 } satisfies Record<string, StyleRule>;

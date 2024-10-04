@@ -5,8 +5,6 @@ import PNG_Genesis_Mob from '@/assets/raster/exp-genesis-mobile.png';
 import PNG_Genesis from '@/assets/raster/exp-genesis.png';
 import PNG_JoyDev_Mob from '@/assets/raster/exp-joydev-mobile.png';
 import PNG_JoyDev from '@/assets/raster/exp-joydev.png';
-import PNG_Kindda_Mob from '@/assets/raster/exp-kindda-mobile.png';
-import PNG_Kindda from '@/assets/raster/exp-kindda.png';
 import PNG_RNCB_Mob from '@/assets/raster/exp-rncb-mobile.png';
 import PNG_RNCB from '@/assets/raster/exp-rncb.png';
 import PNG_VK_Mob from '@/assets/raster/exp-vk-mobile.png';
@@ -67,7 +65,7 @@ const Genesis: TExperience = {
 	dateBegin: new Date('2017-06-01'),
 	dateEnd: new Date('2018-09-01'),
 
-	techStack: [WordPress, HTML, CSS, jQuery],
+	techStack: [WordPress, HTML, CSS, jQuery, PUG],
 
 	description: (
 		<>
@@ -106,7 +104,7 @@ const RNCB: TExperience = {
 	dateBegin: new Date('2018-09-01'),
 	dateEnd: new Date('2020-02-01'),
 
-	techStack: [PHP, Yii2, jQuery, React],
+	techStack: [PHP, Yii2, jQuery, React, Sass, Gulp],
 
 	description: (
 		<>
@@ -133,39 +131,6 @@ const RNCB: TExperience = {
 	),
 };
 
-const Kindda: TExperience = {
-	company: {
-		logo: PNG_Kindda,
-		logoCentred: PNG_Kindda_Mob,
-		name: 'Kindda',
-		website: 'linkedin.com/company/kindda',
-		url: 'https://www.linkedin.com/company/kindda/',
-	},
-
-	jobTitle: 'Outstaff Middle Frontend Developer',
-	isOutstaff: true,
-
-	dateBegin: new Date('2020-02-01'),
-	dateEnd: new Date('2020-06-01'),
-
-	techStack: [Gulp, PUG, Sass, jQuery, WordPress, React],
-
-	description: (
-		<>
-			<p>
-				Kindda was my first experience working on an outstaff basis. Here, I developed landing pages using a combination
-				of Gulp, Pug, Sass, jQuery, and created simple admin panels for collecting and sending messages. Some of them
-				were built with React.
-			</p>
-
-			<p>
-				The most challenging task I tackled in this company was writing text along a circle using SVG format. One of the
-				landing pages was stylistically composed of such text, and my solution was aimed at speeding up development.
-			</p>
-		</>
-	),
-};
-
 const Xsolla: TExperience = {
 	company: {
 		logo: PNG_Xsolla,
@@ -175,11 +140,11 @@ const Xsolla: TExperience = {
 		url: 'https://xsolla.com/',
 	},
 
-	jobTitle: 'Outstaff Senior Frontend Developer',
+	jobTitle: 'Senior Frontend Developer',
 	isOutstaff: true,
 
-	dateBegin: new Date('2020-06-01'),
-	dateEnd: new Date('2021-03-01'),
+	dateBegin: new Date('2020-02-01'),
+	dateEnd: new Date('2020-10-01'),
 
 	techStack: [React, TypeScript, ModuleFederation],
 
@@ -214,10 +179,10 @@ const VK: TExperience = {
 		url: 'https://dev.vk.com/en',
 	},
 
-	jobTitle: 'Outstaff Senior Frontend Developer',
+	jobTitle: 'Senior Frontend Developer',
 	isOutstaff: true,
 
-	dateBegin: new Date('2021-03-01'),
+	dateBegin: new Date('2020-10-01'),
 	dateEnd: new Date('2022-05-01'),
 
 	techStack: [React, Svelte, Backbone, TypeScript],
@@ -288,7 +253,7 @@ const JoyDev: TExperience = {
 	),
 };
 
-export const experience: TExperience[] = [Genesis, RNCB, Kindda, Xsolla, VK, JoyDev];
+export const experience: TExperience[] = [Genesis, RNCB, Xsolla, VK, JoyDev];
 
 function getDuration(experience: TExperience): number {
 	const begin = experience.dateBegin;
@@ -298,6 +263,8 @@ function getDuration(experience: TExperience): number {
 }
 
 const totalExperience = experience.reduce((prev, curr) => prev + getDuration(curr), 0);
+
+export const totalYears = new Date(totalExperience).getUTCFullYear() - 1970;
 
 export function getExperiencePercent(experience: TExperience): number {
 	return getDuration(experience) / totalExperience;

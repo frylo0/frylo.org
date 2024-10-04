@@ -11,6 +11,7 @@ import PNG_Frylo from '@/assets/raster/frylo.png';
 import PNG_Mate from '@/assets/raster/mate.png';
 import PNG_Travel from '@/assets/raster/travel.png';
 import { useLayout } from '@/components/common/Layout/Layout';
+import { totalYears } from '@/constants/work-experience';
 import { Contact } from './Contact/Contact';
 import {
 	laptop,
@@ -71,9 +72,9 @@ export const CVGeneralInfo: React.FC<CVGeneralInfoProps> = ({ className = '' }) 
 	const theMessage = (
 		<div className={cn(sMessage)}>
 			<p>
-				In the dynamic realm of web development, I stand as a seasoned Senior Frontend Developer with a rich tapestry of
-				6 years of experience. My journey has cultivated a vibrant and extensive tech stack, a versatile toolkit capable
-				of crafting any technical solution that the digital landscape demands.{' '}
+				In the dynamic realm of web development, I stand as a seasoned Senior Frontend Developer with a rich tapestry of{' '}
+				{totalYears} years of experience. My journey has cultivated a vibrant and extensive tech stack, a versatile
+				toolkit capable of crafting any technical solution that the digital landscape demands.{' '}
 			</p>
 			<p>
 				With mastery in technologies like React, JavaScript, HTML, and CSS, I am your steadfast partner in translating
@@ -146,8 +147,8 @@ export const CVGeneralInfo: React.FC<CVGeneralInfoProps> = ({ className = '' }) 
 						<h2 className={cn(sTitle)}>Languages</h2>
 
 						<div className={cn(sLanguageItems)}>
-							<Language name="Russian" level="Native Language" percent={100} />
 							<Language name="English" level="Advanced Level" percent={80} />
+							<Language name="Russian" level="Native Language" percent={100} />
 							<Language name="Ukrainian" level="Native Language" percent={90} />
 						</div>
 					</div>

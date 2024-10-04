@@ -69,6 +69,11 @@ export const sLogo = style({
 	},
 });
 
+export const sOutstaff = style({
+	color: colors.primaryDarker,
+	textDecorationColor: colors.primaryDarker,
+});
+
 export const sLogoImg = style({
 	objectFit: 'fill',
 	width: '100%',

@@ -12,6 +12,13 @@ export const sLanguage = style({
 export const sLanguageChart = style({
 	width: 90,
 	height: 90,
+
+	'@media': {
+		[media.widthBetween(0, 405)]: {
+			width: 70,
+			height: 70,
+		},
+	},
 });
 
 export const sChartBody = style({
@@ -48,9 +55,22 @@ export const sLanguageName = style({
 		[media.device.phone]: {
 			fontSize: 14,
 		},
+
+		[media.widthBetween(0, 405)]: {
+			fontSize: 12,
+			lineHeight: '140%',
+		},
 	},
 });
 
 export const sLanguageLevel = style({
 	whiteSpace: 'nowrap',
+
+	'@media': {
+		[media.widthBetween(0, 405)]: {
+			whiteSpace: 'initial',
+			fontSize: 12,
+			lineHeight: '140%',
+		},
+	},
 });

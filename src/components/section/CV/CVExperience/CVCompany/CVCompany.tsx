@@ -22,6 +22,7 @@ import {
 	sLogoImg,
 	sMainFeatures,
 	sName,
+	sOutstaff,
 	sTech,
 	sTechItems,
 	sTechStack,
@@ -69,7 +70,20 @@ export const CVCompany = forwardRef<HTMLDivElement, CVCompanyProps>(
 					<div className={cn(sFeatures)}>
 						{!isPhone && theWebsite}
 						<Feature icon={PNG_Job} className={cn(sJobTitle)}>
-							{exp.jobTitle}
+							<p>
+								{exp.isOutstaff && (
+									<>
+										<Link
+											href={'https://skillstaff.ru/blog/outsourcing-vs-outstaffing-models-what-is-the-difference/'}
+											className={cn(sOutstaff)}
+											target="_blank"
+										>
+											<strong>Outstaff</strong>
+										</Link>{' '}
+									</>
+								)}
+								{exp.jobTitle}
+							</p>
 						</Feature>
 						<Feature icon={PNG_Time} className={cn(sTiming)}>
 							{expBegin?.year}.{expBegin?.month} — {expEnd ? `${expEnd.year}.${expEnd.month}` : 'Now'}

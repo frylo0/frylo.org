@@ -25,6 +25,9 @@ export const metadata: Metadata = {
 		url: 'https://frylo.org',
 		images: ['/og.png'],
 	},
+	alternates: {
+		canonical: new URL('https://frylo.org'),
+	},
 };
 
 export default function Page() {
