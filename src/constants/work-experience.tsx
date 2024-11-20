@@ -1,10 +1,10 @@
 import { StaticImageData } from 'next/image';
 import { ReactNode } from 'react';
 
+import PNG_Freelance_Mob from '@/assets/raster/exp-freelance-mobile.png';
+import PNG_Freelance from '@/assets/raster/exp-freelance.png';
 import PNG_Genesis_Mob from '@/assets/raster/exp-genesis-mobile.png';
 import PNG_Genesis from '@/assets/raster/exp-genesis.png';
-import PNG_JoyDev_Mob from '@/assets/raster/exp-joydev-mobile.png';
-import PNG_JoyDev from '@/assets/raster/exp-joydev.png';
 import PNG_RNCB_Mob from '@/assets/raster/exp-rncb-mobile.png';
 import PNG_RNCB from '@/assets/raster/exp-rncb.png';
 import PNG_VK_Mob from '@/assets/raster/exp-vk-mobile.png';
@@ -17,14 +17,17 @@ import {
 	Gulp,
 	HTML,
 	jQuery,
-	ModuleFederation,
 	NextJS,
+	NodeJS,
 	PHP,
 	PUG,
 	React,
+	Redux,
 	Sass,
 	Svelte,
+	SVG,
 	TTechnology,
+	TurboRepo,
 	TypeScript,
 	WordPress,
 	Yii2,
@@ -62,10 +65,10 @@ const Genesis: TExperience = {
 	jobTitle: 'WordPress developer / System Administrator',
 	isOutstaff: false,
 
-	dateBegin: new Date('2017-06-01'),
-	dateEnd: new Date('2018-09-01'),
+	dateBegin: new Date('2020-06-01'),
+	dateEnd: new Date('2020-08-31'),
 
-	techStack: [WordPress, HTML, CSS, jQuery, PUG],
+	techStack: [HTML, CSS, jQuery, WordPress, PUG],
 
 	description: (
 		<>
@@ -75,16 +78,49 @@ const Genesis: TExperience = {
 				interactive modules for WordPress, data collection for the website, writing medical articles, and SEO promotion.
 			</p>
 
+			<h4>Achievements</h4>
+
+			<ul>
+				<li>Gathered system requirements through communication with the client</li>
+				<li>Expanded the website interface by creating new pages</li>
+				<li>Improved the website&apos;s SEO performance by creating SEO-optimized content</li>
+			</ul>
+		</>
+	),
+};
+
+const Freelance: TExperience = {
+	company: {
+		logo: PNG_Freelance,
+		logoCentred: PNG_Freelance_Mob,
+		name: 'Freelance',
+		website: '—',
+		url: '#',
+	},
+
+	jobTitle: 'Full-stack Developer',
+	isOutstaff: false,
+
+	dateBegin: new Date('2020-08-31'),
+	dateEnd: new Date('2021-07-01'),
+
+	techStack: [React, NodeJS, HTML, CSS, SVG, WordPress],
+
+	description: (
+		<>
 			<p>
-				This job allowed me to significantly improve my communication skills because I had to gather information bit by
-				bit and communicate with a large number of people from various fields and departments.
+				I developed tools to simplify job searches, designed an interactive map showcasing historical landmarks, and
+				built a custom online platform for a psychologist, delivering tailored solutions that met specific needs
+				effectively.
 			</p>
 
-			<p>
-				Here, I encountered SEO for the first time and learned a lot of aspects of it. In the future, this helped me not
-				only to develop websites qualitatively but also to understand what needs to be done to ensure that the websites
-				I create rank high in search engine results.
-			</p>
+			<h4>Achievements</h4>
+
+			<ul>
+				<li>Developed an IT job parser for popular online resources using Node.js and React.js</li>
+				<li>Created an interactive map of Crimea featuring historical landmarks</li>
+				<li>Built an online store for a psychologist by developing a custom WordPress theme</li>
+			</ul>
 		</>
 	),
 };
@@ -101,8 +137,8 @@ const RNCB: TExperience = {
 	jobTitle: 'Middle Full-stack Developer',
 	isOutstaff: false,
 
-	dateBegin: new Date('2018-09-01'),
-	dateEnd: new Date('2020-02-01'),
+	dateBegin: new Date('2022-01-01'),
+	dateEnd: new Date('2022-05-01'),
 
 	techStack: [PHP, Yii2, jQuery, React, Sass, Gulp],
 
@@ -114,19 +150,13 @@ const RNCB: TExperience = {
 				jQuery and Vue.js.
 			</p>
 
-			<p>
-				My responsibilities included developing backend logic, writing frontend using jQuery and Vue.js, and rewriting
-				old frontend logic in React.js. Quite a broad range of technologies, isn&apos;t it? I was fortunate to try out
-				all these technologies because the company was undergoing standardization, and a decision was made to rewrite
-				everything in React.js due to its growing popularity.
-			</p>
+			<h4>Achievements</h4>
 
-			<p>
-				Primarily, I developed internal products, and my client was the department head. During my time at the company,
-				I had created several dashboards with a large amount of infographic and rewritten one project to React.js. Also,
-				working as a full-stack developer gave me an understanding of client-server architecture, which made it easy for
-				me to communicate with both backend and frontend developers in the future.
-			</p>
+			<ul>
+				<li>Increased incident response speed by adapting dashboards for TV</li>
+				<li>Improved interface readability by developing a new design with enhanced UI and UX</li>
+				<li>Migrated the project from jQuery/Vue.js to React.js, simplifying project maintenance</li>
+			</ul>
 		</>
 	),
 };
@@ -143,10 +173,10 @@ const Xsolla: TExperience = {
 	jobTitle: 'Senior Frontend Developer',
 	isOutstaff: true,
 
-	dateBegin: new Date('2020-02-01'),
-	dateEnd: new Date('2020-10-01'),
+	dateBegin: new Date('2022-05-01'),
+	dateEnd: new Date('2023-03-01'),
 
-	techStack: [React, TypeScript, ModuleFederation],
+	techStack: [React, TypeScript, TurboRepo, NextJS],
 
 	description: (
 		<>
@@ -155,17 +185,13 @@ const Xsolla: TExperience = {
 				page and allows users to interact with Xsolla: transferring items to the game, purchasing currency, and so on.
 			</p>
 
-			<p>
-				Additionally, I created players personal accounts where they could do the same things as in the widget. Here, I
-				became familiar with technologies such as Module Federation and Turbo Repo. The project was divided into
-				separate repositories that were brought together. Each micro-frontend was hosted on a separate server and pulled
-				together using Module Federation.
-			</p>
+			<h4>Achievements</h4>
 
-			<p>
-				This project involved intensive work with CI/CD, publishing package to NPM, and advanced TypeScript work, making
-				it one of my favorite projects.
-			</p>
+			<ul>
+				<li>Implemented the subscription auto-renewal functionality with automatic payments</li>
+				<li>Migrated the project from React to Preact, reducing memory usage and improving widget loading speed</li>
+				<li>Improved cross-browser support for the widget by supporting older versions of Chrome and Firefox</li>
+			</ul>
 		</>
 	),
 };
@@ -182,10 +208,10 @@ const VK: TExperience = {
 	jobTitle: 'Senior Frontend Developer',
 	isOutstaff: true,
 
-	dateBegin: new Date('2020-10-01'),
-	dateEnd: new Date('2022-05-01'),
+	dateBegin: new Date('2023-03-01'),
+	dateEnd: new Date('2024-06-01'),
 
-	techStack: [React, Svelte, Backbone, TypeScript],
+	techStack: [React, Redux, Svelte, Backbone, TypeScript],
 
 	description: (
 		<>
@@ -193,78 +219,34 @@ const VK: TExperience = {
 				At VK, I was involved in developing advertising banners. At first glance, this may seem like a straightforward
 				task, but don&apos;t rush to conclusions.
 			</p>
-			<p>
-				Advertising banners themselves typically have many variations: with a headline or without, with the image on the
-				right or left. Additionally, different amounts of text need to be accommodated, and the banner should adjust
-				correctly. Adding the environmental factors where the advertising banner is placed complicates matters further:
-				different language locales, light/dark themes, and the specific devices users are accessing from. Taken
-				together, these factors turn banner development into a resource-intensive process because each ad must meet
-				around 20 different requirements and adapt to any placement it finds itself in.
-			</p>
 
-			<p>
-				Typically, a developer works on 1-3 projects simultaneously. During my time at VK, I worked on 11 projects
-				because I needed to understand the environment into which I integrated my solution and identify the root of any
-				problems that arose. Here, I learned to quickly immerse myself in unfamiliar projects of any complexity, which
-				helps me find solutions to problems quickly to this day.
-			</p>
+			<h4>Achievements</h4>
+
+			<ul>
+				<li>Developed a banner construction system and integrated it into 6 projects</li>
+				<li>Expanded the user funnel by supporting IE11 and older versions of Chrome and Firefox</li>
+				<li>Increased codebase coverage with unit tests, reducing the number of bugs in production</li>
+			</ul>
 		</>
 	),
 };
 
-const JoyDev: TExperience = {
-	company: {
-		logo: PNG_JoyDev,
-		logoCentred: PNG_JoyDev_Mob,
-		name: 'JoyDev',
-		website: 'joy-dev.ru',
-		url: 'https://joy-dev.ru/',
-	},
+export const experience: TExperience[] = [Genesis, Freelance, RNCB, Xsolla, VK];
 
-	jobTitle: 'Head of Frontend Department',
-	isOutstaff: false,
-
-	dateBegin: new Date('2022-05-01'),
-	dateEnd: new Date('2024-07-30'),
-
-	techStack: [React, NextJS, TypeScript, WordPress],
-
-	description: (
-		<>
-			<p>
-				I&apos;am CTO of frontend department. Code reviews, project customization for different needs, team management,
-				motivating employees, project decomposition and estimation, and conducting technical interviews. All this
-				responsibilities was attended to my while I was working in JoyDev.
-			</p>
-
-			<p>
-				My main focus was to develop the company&apos;s website with a team of 6 developers. On this project, I
-				configured linters and prettifier, set up CI/CD pipelines, defined the code style, and prepared project
-				documentation. Additionally, I acted as a team lead on other projects such as a website for selling bouquets, a
-				module for calculating product costs for an online store, and an admin panel for a cosmetics sales website.
-			</p>
-
-			<p>
-				Nevertheless, I also wrote code myself. Primarily, this involved solutions related to optimizing websites for
-				SEO and performance or complex frontend logic that less experienced employees couldn&apos;t complete within
-				reasonable timeframes.
-			</p>
-		</>
-	),
-};
-
-export const experience: TExperience[] = [Genesis, RNCB, Xsolla, VK, JoyDev];
+const dayS = 86_400;
 
 function getDuration(experience: TExperience): number {
 	const begin = experience.dateBegin;
 	const end = experience.dateEnd || new Date();
 
-	return end.getTime() - begin.getTime();
+	return end.getTime() - begin.getTime() + 31 * dayS * 1000;
 }
 
 const totalExperience = experience.reduce((prev, curr) => prev + getDuration(curr), 0);
+const totalExperienceDate = new Date(totalExperience);
+const roundingYear = 0 && totalExperienceDate.getMonth() >= 7 ? 1 : 0;
 
-export const totalYears = new Date(totalExperience).getUTCFullYear() - 1970;
+export const totalYears = totalExperienceDate.getUTCFullYear() - 1970 + roundingYear;
 
 export function getExperiencePercent(experience: TExperience): number {
 	return getDuration(experience) / totalExperience;

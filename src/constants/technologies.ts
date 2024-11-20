@@ -76,3 +76,23 @@ export const NextJS: TTechnology = {
 	name: 'Next.js',
 	url: 'https://nextjs.org/',
 };
+
+export const NodeJS: TTechnology = {
+	name: 'Node.js',
+	url: 'https://nodejs.org',
+};
+
+export const SVG: TTechnology = {
+	name: 'SVG',
+	url: 'https://developer.mozilla.org/en-US/docs/Web/SVG',
+};
+
+export const TurboRepo: TTechnology = {
+	name: 'Turbo Repo',
+	url: 'https://turbo.build/',
+};
+
+export const Redux: TTechnology = {
+	name: 'Redux',
+	url: 'https://redux.js.org/',
+};

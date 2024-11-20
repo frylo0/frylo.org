@@ -5,9 +5,10 @@ import Image from 'next/image';
 import { CSSProperties, useCallback, useLayoutEffect, useMemo, useReducer, useRef, useState } from 'react';
 import PNG_TopazPhone from 'src/assets/raster/topaz-mobile.png';
 import PNG_Topaz from 'src/assets/raster/topaz.png';
-import { useEventCallback, useEventListener, useInterval, useEffectOnce as useMount, useUnmount } from 'usehooks-ts';
+import { useEventCallback, useEventListener, useInterval } from 'usehooks-ts';
 
 import { useLayout } from '@/components/common/Layout/Layout';
+import { useAnimationFrameLoop } from '@/lib/useWindowAnimationFrame';
 import { sAsteroid, sBall, sImage } from './Asteroid.css';
 import { calcBall, TBall, TCoords } from './helpers';
 
@@ -73,7 +74,6 @@ export const Asteroid: React.FC<AsteroidProps> = ({
 	const scrollPrevRef = useRef<TCoords>({ x: 0, y: 0 });
 	const scrollDiffRef = useRef<TCoords>({ x: 0, y: 0 });
 
-	const animationFrameRef = useRef<number>(0);
 	const phoneStep = useRef<number>(0);
 
 	// Helpers
@@ -95,17 +95,10 @@ export const Asteroid: React.FC<AsteroidProps> = ({
 		if (phoneStep.current >= total) phoneStep.current = 0;
 	}, []);
 
-	const lifecycle = useCallback(() => {
-		animationFrameRef.current = window.requestAnimationFrame(() => {
-			calcBall(isPhone, isDesktop, spring, friction, spin, mouseRef, ballRef, scrollDiffRef);
-			rerender();
-			lifecycle();
-		});
-	}, [friction, isDesktop, isPhone, spin, spring]);
-
-	const cancelLifecycle = useCallback(() => {
-		window.cancelAnimationFrame(animationFrameRef.current);
-	}, []);
+	const lifecycle = () => {
+		calcBall(isPhone, isDesktop, spring, friction, spin, mouseRef, ballRef, scrollDiffRef);
+		rerender();
+	};
 
 	// Handlers
 
@@ -149,8 +142,7 @@ export const Asteroid: React.FC<AsteroidProps> = ({
 
 	// Effects
 
-	useMount(lifecycle);
-	useUnmount(cancelLifecycle);
+	useAnimationFrameLoop(lifecycle);
 
 	useEventListener('mousemove', handleMouseMove);
 

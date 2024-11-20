@@ -122,11 +122,14 @@ const Line: React.FC<LineProps> = ({ className, isCurrent, onSelect, prevDate, n
 	};
 
 	let diffYear = +(end?.year || +new Date().getFullYear()) - +(begin?.year || 0);
-	let diffMonth = +(end?.month || +new Date().getMonth()) - +(begin?.month || 0);
+	let diffMonth = +(end?.month || +new Date().getMonth()) - +(begin?.month || 0) + 1;
 
 	if (diffMonth < 0) {
 		diffMonth += 12;
 		diffYear -= 1;
+	} else if (diffMonth > 11) {
+		diffMonth -= 12;
+		diffYear += 1;
 	}
 
 	return (

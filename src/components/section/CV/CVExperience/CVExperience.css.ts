@@ -59,6 +59,15 @@ export const sLine = style({
 		borderRadius: '0 100px 100px 0',
 	},
 
+	selectors: {
+		[`&:first-child::before`]: {
+			borderRadius: '100px 0 0 100px',
+		},
+		[`&:last-child::before`]: {
+			borderRadius: '0 100px 100px 0',
+		},
+	},
+
 	'@media': {
 		[media.device.desktop]: {
 			minWidth: 75,
