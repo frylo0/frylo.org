@@ -10,7 +10,7 @@ export const sCVCompany = style({
 	marginBlockStart: 50,
 	display: 'grid',
 	gridTemplateRows: `auto`,
-	gridTemplateColumns: `auto auto auto`,
+	gridTemplateColumns: `auto auto 1fr`,
 	gap: 70,
 
 	'@media': {
@@ -120,6 +120,30 @@ export const sDescription = style({
 
 globalStyle(`${sDescription} p`, {
 	marginBlockEnd: 16,
+});
+
+globalStyle(`${sDescription} ul`, {
+	marginBlockStart: 8,
+	marginBlockEnd: 16,
+});
+
+globalStyle(`${sDescription} h4`, {
+	fontWeight: fontWeight.regular,
+});
+
+globalStyle(`${sDescription} ul`, {
+	listStyle: 'disc inside',
+});
+
+globalStyle(`${sDescription} li`, {
+	marginInlineStart: 8,
+	paddingInlineStart: '1em',
+	textIndent: '-1em',
+});
+
+globalStyle(`${sDescription} li::before`, {
+	content: '',
+	marginInlineEnd: -5, // Moving closer to bullet
 });
 
 // Company Info

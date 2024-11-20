@@ -59,16 +59,20 @@ export const CVCompany = forwardRef<HTMLDivElement, CVCompanyProps>(
 				<div className={cn(sLogo)}>
 					<Image className={cn(sLogoImg)} src={expLogo} alt={exp.company.name} />
 				</div>
+
 				{isPhone && (
 					<div className={cn(sMainFeatures)}>
 						{theName}
 						{theWebsite}
 					</div>
 				)}
+
 				<div className={cn(sInfo)}>
 					{!isPhone && theName}
+
 					<div className={cn(sFeatures)}>
 						{!isPhone && theWebsite}
+
 						<Feature icon={PNG_Job} className={cn(sJobTitle)}>
 							<p>
 								{exp.isOutstaff && (
@@ -85,13 +89,15 @@ export const CVCompany = forwardRef<HTMLDivElement, CVCompanyProps>(
 								{exp.jobTitle}
 							</p>
 						</Feature>
+
 						<Feature icon={PNG_Time} className={cn(sTiming)}>
 							{expBegin?.year}.{expBegin?.month} — {expEnd ? `${expEnd.year}.${expEnd.month}` : 'Now'}
 						</Feature>
+
 						<Feature icon={PNG_Code} className={cn(sTechStack)}>
 							<div className={cn(sTechItems)}>
 								{exp.techStack.map((tech, i) => (
-									<Fragment key={i}>
+									<Fragment key={tech.url}>
 										{i > 0 && ', '}
 										<Link className={cn(sTech)} href={tech.url}>
 											{tech.name}
@@ -102,6 +108,7 @@ export const CVCompany = forwardRef<HTMLDivElement, CVCompanyProps>(
 						</Feature>
 					</div>
 				</div>
+
 				<div className={cn(sDescription)}>{exp.description}</div>
 			</div>
 		);
