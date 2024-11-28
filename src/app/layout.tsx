@@ -12,14 +12,33 @@ import { IsDevelopment } from '@/components/common/IsDevelopment/IsDevelopment';
 import { YandexMetrika } from '@/components/common/YandexMetrika/YandexMetrika';
 import { breakpoints } from '@/constants/breakpoints';
 import { APP_URL } from '@/constants/project';
+import { totalYears } from '@/constants/work-experience';
 import { WithClientAuth } from '@/lib/WithClientAuth';
 
 export const metadata: Metadata = {
-	title: `TypeScript starter for Next.js`,
-	description: `TypeScript starter for Next.js that includes all you need to build amazing apps`,
 	metadataBase: new URL(APP_URL),
+
+	title: `frylo — Frontend Developer`,
+	description:
+		`World is moving, you inhale fresh forest air...` +
+		` You feel free, nothing can throw you off balance.` +
+		` It is because you know, there is hard skilled Frontend Developer developing your website on another side of the Earth.` +
+		` Welcome to my (frylo0) website and investigate all power of web technologies.`,
+
+	openGraph: {
+		title: `frylo — Frontend Developer`,
+		description:
+			`In the dynamic realm of web development,` +
+			` I stand as a seasoned Senior Frontend Developer with a rich tapestry of ${totalYears} years of experience.` +
+			` My journey has cultivated a vibrant and extensive tech stack, a versatile toolkit capable of` +
+			` crafting any technical solution that the digital landscape demands.`,
+		type: 'website',
+		url: APP_URL,
+		images: ['/og.png'],
+	},
+
 	alternates: {
-		canonical: './',
+		canonical: new URL(APP_URL),
 	},
 };
 

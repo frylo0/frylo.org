@@ -1,10 +1,10 @@
 import { StaticImageData } from 'next/image';
 import { ReactNode } from 'react';
 
-import PNG_Freelance_Mob from '@/assets/raster/exp-freelance-mobile.png';
-import PNG_Freelance from '@/assets/raster/exp-freelance.png';
 import PNG_Genesis_Mob from '@/assets/raster/exp-genesis-mobile.png';
 import PNG_Genesis from '@/assets/raster/exp-genesis.png';
+import PNG_JoyDev_Mob from '@/assets/raster/exp-joydev-mobile.png';
+import PNG_JoyDev from '@/assets/raster/exp-joydev.png';
 import PNG_RNCB_Mob from '@/assets/raster/exp-rncb-mobile.png';
 import PNG_RNCB from '@/assets/raster/exp-rncb.png';
 import PNG_VK_Mob from '@/assets/raster/exp-vk-mobile.png';
@@ -18,14 +18,12 @@ import {
 	HTML,
 	jQuery,
 	NextJS,
-	NodeJS,
 	PHP,
 	PUG,
 	React,
 	Redux,
 	Sass,
 	Svelte,
-	SVG,
 	TTechnology,
 	TurboRepo,
 	TypeScript,
@@ -65,8 +63,8 @@ const Genesis: TExperience = {
 	jobTitle: 'WordPress developer / System Administrator',
 	isOutstaff: false,
 
-	dateBegin: new Date('2020-06-01'),
-	dateEnd: new Date('2020-08-31'),
+	dateBegin: new Date('2017-06-01'),
+	dateEnd: new Date('2018-09-01'),
 
 	techStack: [HTML, CSS, jQuery, WordPress, PUG],
 
@@ -89,42 +87,6 @@ const Genesis: TExperience = {
 	),
 };
 
-const Freelance: TExperience = {
-	company: {
-		logo: PNG_Freelance,
-		logoCentred: PNG_Freelance_Mob,
-		name: 'Freelance',
-		website: '—',
-		url: '#',
-	},
-
-	jobTitle: 'Full-stack Developer',
-	isOutstaff: false,
-
-	dateBegin: new Date('2020-08-31'),
-	dateEnd: new Date('2021-07-01'),
-
-	techStack: [React, NodeJS, HTML, CSS, SVG, WordPress],
-
-	description: (
-		<>
-			<p>
-				I developed tools to simplify job searches, designed an interactive map showcasing historical landmarks, and
-				built a custom online platform for a psychologist, delivering tailored solutions that met specific needs
-				effectively.
-			</p>
-
-			<h4>Achievements</h4>
-
-			<ul>
-				<li>Developed an IT job parser for popular online resources using Node.js and React.js</li>
-				<li>Created an interactive map of Crimea featuring historical landmarks</li>
-				<li>Built an online store for a psychologist by developing a custom WordPress theme</li>
-			</ul>
-		</>
-	),
-};
-
 const RNCB: TExperience = {
 	company: {
 		logo: PNG_RNCB,
@@ -137,8 +99,8 @@ const RNCB: TExperience = {
 	jobTitle: 'Middle Full-stack Developer',
 	isOutstaff: false,
 
-	dateBegin: new Date('2022-01-01'),
-	dateEnd: new Date('2022-05-01'),
+	dateBegin: new Date('2018-09-01'),
+	dateEnd: new Date('2020-02-01'),
 
 	techStack: [PHP, Yii2, jQuery, React, Sass, Gulp],
 
@@ -173,10 +135,10 @@ const Xsolla: TExperience = {
 	jobTitle: 'Senior Frontend Developer',
 	isOutstaff: true,
 
-	dateBegin: new Date('2022-05-01'),
-	dateEnd: new Date('2023-03-01'),
+	dateBegin: new Date('2020-02-01'),
+	dateEnd: new Date('2020-10-01'),
 
-	techStack: [React, TypeScript, TurboRepo, NextJS],
+	techStack: [React, TypeScript, TurboRepo],
 
 	description: (
 		<>
@@ -208,8 +170,8 @@ const VK: TExperience = {
 	jobTitle: 'Senior Frontend Developer',
 	isOutstaff: true,
 
-	dateBegin: new Date('2023-03-01'),
-	dateEnd: new Date('2024-06-01'),
+	dateBegin: new Date('2020-10-01'),
+	dateEnd: new Date('2022-05-01'),
 
 	techStack: [React, Redux, Svelte, Backbone, TypeScript],
 
@@ -231,7 +193,52 @@ const VK: TExperience = {
 	),
 };
 
-export const experience: TExperience[] = [Genesis, Freelance, RNCB, Xsolla, VK];
+const JoyDev: TExperience = {
+	company: {
+		logo: PNG_JoyDev,
+		logoCentred: PNG_JoyDev_Mob,
+		name: 'Joy Dev',
+		website: 'joy-dev.ru',
+		url: 'https://joy-dev.ru/',
+	},
+
+	jobTitle: 'Head of Frontend Department',
+	isOutstaff: false,
+
+	dateBegin: new Date('2022-05-01'),
+	dateEnd: new Date('2024-07-30'),
+
+	techStack: [React, NextJS, TypeScript, WordPress],
+
+	description: (
+		<>
+			<p>
+				I&apos;am CTO of frontend department. Code reviews, project customization for different needs, team management,
+				motivating employees, project decomposition and estimation, and conducting technical interviews. All this
+				responsibilities was attended to me while I was working in JoyDev.
+			</p>
+
+			<h4>Achievements</h4>
+
+			<ul>
+				<li>
+					Increased developer engagement in company projects, as measured by team feedback during retrospectives, by
+					introducing new technologies such as Zustand, Docker, and pnpm
+				</li>
+				<li>
+					Simplified the hiring process, leading to a 40% increase in HR funnel reach, by refining candidate
+					requirements based on market standards and preparing a bank of technical interview questions
+				</li>
+				<li>
+					Achieved timely project completion, improving estimation accuracy by 30%, through preliminary evaluation and
+					decomposition of incoming leads
+				</li>
+			</ul>
+		</>
+	),
+};
+
+export const experience: TExperience[] = [Genesis, RNCB, Xsolla, VK, JoyDev];
 
 const dayS = 86_400;
 

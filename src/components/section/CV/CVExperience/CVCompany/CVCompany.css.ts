@@ -133,6 +133,9 @@ globalStyle(`${sDescription} h4`, {
 
 globalStyle(`${sDescription} ul`, {
 	listStyle: 'disc inside',
+	display: 'flex',
+	flexDirection: 'column',
+	gap: 5,
 });
 
 globalStyle(`${sDescription} li`, {
@@ -143,7 +146,7 @@ globalStyle(`${sDescription} li`, {
 
 globalStyle(`${sDescription} li::before`, {
 	content: '',
-	marginInlineEnd: -5, // Moving closer to bullet
+	marginInlineStart: '-0.4em', // Moving closer to bullet
 });
 
 // Company Info
