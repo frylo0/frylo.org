@@ -70,11 +70,11 @@ export const sLine = style({
 
 	'@media': {
 		[media.device.desktop]: {
-			minWidth: 75,
+			minWidth: 100,
 		},
 		[media.device.phone]: {
 			width: 20,
-			minHeight: 60,
+			minHeight: 70,
 
 			':first-child': {
 				borderRadius: '0 0 100px 100px',
