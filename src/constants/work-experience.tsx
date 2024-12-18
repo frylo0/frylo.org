@@ -9,6 +9,8 @@ import PNG_RNCB_Mob from '@/assets/raster/exp-rncb-mobile.png';
 import PNG_RNCB from '@/assets/raster/exp-rncb.png';
 import PNG_VK_Mob from '@/assets/raster/exp-vk-mobile.png';
 import PNG_VK from '@/assets/raster/exp-vk.png';
+import PNG_Wb_Mob from '@/assets/raster/exp-wb-mobile.png';
+import PNG_Wb from '@/assets/raster/exp-wb.png';
 import PNG_Xsolla_Mob from '@/assets/raster/exp-xsolla-mobile.png';
 import PNG_Xsolla from '@/assets/raster/exp-xsolla.png';
 import {
@@ -238,7 +240,35 @@ const JoyDev: TExperience = {
 	),
 };
 
-export const experience: TExperience[] = [Genesis, RNCB, Xsolla, VK, JoyDev];
+const Wildberries: TExperience = {
+	company: {
+		logo: PNG_Wb,
+		logoCentred: PNG_Wb_Mob,
+		name: 'Wildberries',
+		website: 'wildberries.ru',
+		url: 'https://www.wildberries.ru/',
+	},
+
+	jobTitle: 'Lead Frontend Engineer',
+	isOutstaff: false,
+
+	dateBegin: new Date('2024-11-01'),
+	dateEnd: undefined,
+
+	techStack: [React, NextJS, TypeScript, Redux],
+
+	description: (
+		<>
+			<h4>Achievements</h4>
+
+			<ul>
+				<li>Led the team developing a digital goods marketplace</li>
+			</ul>
+		</>
+	),
+};
+
+export const experience: TExperience[] = [Genesis, RNCB, Xsolla, VK, JoyDev, Wildberries];
 
 const dayS = 86_400;
 
