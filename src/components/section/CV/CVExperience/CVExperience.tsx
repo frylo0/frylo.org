@@ -99,6 +99,7 @@ const Line: React.FC<LineProps> = ({ className, isCurrent, onSelect, prevDate, n
 
 	const begin = getDate(dateBegin);
 	const end = getDate(dateEnd);
+	const now = getDate(new Date())!;
 
 	const percent = getExperiencePercent(item);
 
@@ -121,8 +122,8 @@ const Line: React.FC<LineProps> = ({ className, isCurrent, onSelect, prevDate, n
 		[cssMarginProp]: isBeginMerged ? cssMarginValue : '0',
 	};
 
-	let diffYear = +(end?.year || +new Date().getFullYear()) - +(begin?.year || 0);
-	let diffMonth = +(end?.month || +new Date().getMonth()) - +(begin?.month || 0) + 1;
+	let diffYear = +(end?.year || now.year) - +(begin?.year || 0);
+	let diffMonth = +(end?.month || now.month) - +(begin?.month || 0) + 1;
 
 	if (diffMonth < 0) {
 		diffMonth += 12;
